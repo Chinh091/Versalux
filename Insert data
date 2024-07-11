@@ -15,10 +15,10 @@ INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `Conn
 VALUES
 (1, 150, 'Wired', 1.2, '50Hz', 'Class I', 'LCP1', 'General specs', 0.98, 1, 230, 40, -10),
 (2, 100, 'Plugged', 1.0, '60Hz', 'Class II', 'LCP2', 'Specific specs', 0.95, 2, 240, 35, -20);
-INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`, `ProductID`)
 VALUES
-(1, 'High-performance lighting family', 'Performance', 'High-performance lights'),
-(2, 'Economical lighting family', 'Eco', 'Economical lights');
+(1, 'High-performance lighting family', 'Performance', 'High-performance lights', 1),
+(2, 'Economical lighting family', 'Eco', 'Economical lights', 2);
 INSERT INTO `IESFiles` (`IESFileID`, `IESFile`, `IESFileDescription`, `IESFileName`, `ProductID`)
 VALUES
 (1, NULL, 'Standard IES file', 'Standard.ies', 1),
@@ -35,19 +35,19 @@ INSERT INTO `PhysicalConstructions` (`PhysicalID`, `CutOutSize`, `DimensionDiagr
 VALUES
 (1, '100x200mm', NULL, '200x300x400mm', 'Black', NULL, 'Matte', 'Aluminum', 'Standard construction', 'Ceiling', 'Surface', 'Glass', 1, 2.5),
 (2, '150x250mm', NULL, '250x350x450mm', 'White', NULL, 'Glossy', 'Plastic', 'Specific construction', 'Wall', 'Recessed', 'Polycarbonate', 2, 3.0);
-INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`, `ProductID`)
 VALUES
-(1, 'Modern Collection', 'Lighting', 'Indoor'),
-(2, 'Classic Collection', 'Lighting', 'Outdoor');
-INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+(1, 'Modern Collection', 'Lighting', 'Indoor', 1),
+(2, 'Classic Collection', 'Lighting', 'Outdoor', 2);
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`, `ProductID`)
 VALUES
-(1, 1, NULL, 'P001', 1, 1, 1),
-(2, 2, NULL, 'P002', 2, 2, 2);
-INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+(1, 1, NULL, 'P001', 1, 1, 1, 1),
+(2, 2, NULL, 'P002', 2, 2, 2, 2);
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`, `ProductID`)
 VALUES
-(1, 'SubFamily for high-performance lights', 'High-Performance', 'HP lights'),
-(2, 'SubFamily for economical lights', 'Economical', 'Eco lights');
-INSERT INTO `Suppliers` (`SupplierID`, `SupplierLogo`, `SupplierName`)
+(1, 'SubFamily for high-performance lights', 'High-Performance', 'HP lights', 1),
+(2, 'SubFamily for economical lights', 'Economical', 'Eco lights', 2);
+INSERT INTO `Suppliers` (`SupplierID`, `SupplierLogo`, `SupplierName`, `ProductID`)
 VALUES
-(1, NULL, 'Supplier1'),
-(2, NULL, 'Supplier2');
+(1, NULL, 'Supplier1', 1),
+(2, NULL, 'Supplier2', 2);
