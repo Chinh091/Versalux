@@ -97,6 +97,7 @@ CREATE TABLE `Families` (
     `FamilyDescription` TEXT,
     `FamilyName` VARCHAR(255),
     `FamilyShortDescription` TEXT,
+    `ProductID` INT,
     PRIMARY KEY (`FamilyID`)
 );
 CREATE TABLE `IESFiles` (
@@ -215,6 +216,7 @@ CREATE TABLE `ProductGroups` (
     `Collection` VARCHAR(255),
     `ProductCategory` VARCHAR(255),
     `ProductSubCategory` VARCHAR(255),
+    `ProductID` INT,
     PRIMARY KEY (`ProductGroupID`)
 );
 CREATE TABLE `Products` (
@@ -232,12 +234,14 @@ CREATE TABLE `SubFamilies` (
     `SubFamilyDescription` TEXT,
     `SubFamilyName` VARCHAR(255),
     `SubFamilyShortDescription` TEXT,
+    `ProductID` INT,
     PRIMARY KEY (`SubFamilyID`)
 );
 CREATE TABLE `Suppliers` (
     `SupplierID` INT AUTO_INCREMENT,
     `SupplierLogo` BLOB,
     `SupplierName` VARCHAR(255),
+    `ProductID` INT,
     PRIMARY KEY (`SupplierID`)
 );
 
