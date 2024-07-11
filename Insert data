@@ -1,0 +1,53 @@
+USE `testdb`;
+INSERT INTO `Accessories` (`AccessoryID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`, `ProductID`)
+VALUES 
+(1, 'ACC001', 'Metal', 'Mounting Bracket for XYZ Light', NULL, NULL, 'Bracket for easy mounting', NULL, 'Use with XYZ models', 101),
+(2, 'ACC002', 'Plastic', 'Light Diffuser', NULL, NULL, 'Diffuser for soft lighting', NULL, 'Compatible with ABC lights', 102);
+INSERT INTO `CertificateApprovals` (`CertificateID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `ProductID`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(1, 'Approval1', 'Yes', 'Yes', 'No', 'No', 'A', 'B', 'C', 'Zone 1', 'IK08', 'IP65', 'General certificate', 50, -20, 101, 'Yes', 'Rating A', 'Rating B', '2 years'),
+(2, 'Approval2', 'No', 'No', 'Yes', 'Yes', 'B', 'A', 'B', 'Zone 2', 'IK09', 'IP66', 'Specific certificate', 60, -10, 102, 'No', 'Rating B', 'Rating A', '3 years');
+INSERT INTO `DriverSpecifications` (`DriverID`, `AOCIfRangeMax`, `AOCIfRangeMin`, `CLO`, `Compatibility`, `Control`, `Description`, `DriverMounting`, `DriverSetting`, `DriverSupplier`, `ElectricalProtectionClass`, `ExtNTC`, `FixedOutput`, `ForwardCurrentRating`, `ForwardVoltageRating`, `InputVoltageRangeMax`, `InputVoltageRangeMin`, `InrushCurrent`, `InrushTWidth`, `IP`, `LeakageCurrent`, `MaxOperatingTemp`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `PstLM`, `SELVHV`, `Surge`, `SVM`, `TaC`, `THDPercentage`, `TypeCCurrent`, `TypeCVoltage`, `VersaluxDriverCode`, `VfRangeMax`, `VfRangeMin`, `WattsLoss`)
+VALUES
+(1, 500, 100, 'Yes', 'XYZ Lights', 'DALI', 'High-performance driver', 'Surface', 'Manual', 'Supplier1', 'Class II', 'No', 'Yes', 350, 230, 240, 100, 50, 10, 'IP67', 0.5, 85, 'Advanced driver', 0.95, 101, 'Yes', 'SELV', '5kV', 'Yes', 70, 0.15, 350, 230, 'DR001', 260, 200, 5),
+(2, 600, 120, 'No', 'ABC Lights', '0-10V', 'Standard driver', 'Embedded', 'Automatic', 'Supplier2', 'Class I', 'Yes', 'No', 400, 250, 260, 110, 60, 12, 'IP65', 0.3, 90, 'Standard driver', 0.92, 102, 'No', 'HV', '6kV', 'No', 75, 0.20, 400, 250, 'DR002', 280, 220, 6);
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(1, 150, 'Wired', 1.2, '50Hz', 'Class I', 'LCP1', 'General specs', 0.98, 101, 230, 40, -10),
+(2, 100, 'Plugged', 1.0, '60Hz', 'Class II', 'LCP2', 'Specific specs', 0.95, 102, 240, 35, -20);
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(1, 'High-performance lighting family', 'Performance', 'High-performance lights'),
+(2, 'Economical lighting family', 'Eco', 'Economical lights');
+INSERT INTO `IESFiles` (`IESFileID`, `IESFile`, `IESFileDescription`, `IESFileName`, `ProductID`)
+VALUES
+(1, NULL, 'Standard IES file', 'Standard.ies', 101),
+(2, NULL, 'Advanced IES file', 'Advanced.ies', 102);
+INSERT INTO `LEDCharacteristics` (`LEDID`, `ArrayCBValue`, `ArrayForwardCurrentRating`, `ArrayForwardVoltageRating`, `ArrayInSituTemperature`, `ArrayOutput`, `ArrayZhagaType`, `CCT`, `ChipCode`, `ChipDimensions`, `ChipForwardCurrentRating`, `ChipForwardVoltageRating`, `ChipSeries`, `ChipVoltageRange`, `COI`, `CRI`, `DUV`, `FidelityIndex`, `FLevel`, `GamutIndex`, `InSituTempOfLEDChip`, `LEDModuleVf`, `LocalAverages`, `LocalChromaShift`, `LocalColorFidelity`, `LocalHueShift`, `LumenPercentage50000Hrs`, `MiscellaneousInfo`, `MOverPRatio`, `PeakWaveLength`, `PLevel`, `PrimaryChipSupplier`, `ProductID`, `R9Value`, `RatedLife`, `SDCMInitial`, `SDCMOverLife`, `SecondaryChipSupplier`, `SPDR`, `SPRatio`, `TM30Report`, `VersaluxArrayReferenceNumber`, `VersaluxChipReferenceNumber`, `VLevel`, `WhitePointX`, `WhitePointY`)
+VALUES
+(1, 'CB001', 350, 230, 50, 2000, 'Type1', '4000K', 'CH001', '10x10', 350, 230, 'Series1', '200-250', 'COI1', 80, 'DUV1', 90, 'F1', 95, 50, 230, 'Avg1', 'Shift1', 'Fidelity1', 'HueShift1', 90, 'General info', 1.5, 450, 'P1', 'Supplier1', 101, 80, 50000, 3, 5, 'Supplier2', 'SPDR1', 2.0, 'Report1', 'Ref001', 'ChipRef001', 'V1', 0.3130, 0.3290),
+(2, 'CB002', 400, 250, 55, 2500, 'Type2', '5000K', 'CH002', '12x12', 400, 250, 'Series2', '220-260', 'COI2', 85, 'DUV2', 92, 'F2', 97, 55, 250, 'Avg2', 'Shift2', 'Fidelity2', 'HueShift2', 92, 'Specific info', 1.6, 460, 'P2', 'Supplier2', 102, 85, 60000, 2, 4, 'Supplier3', 'SPDR2', 2.1, 'Report2', 'Ref002', 'ChipRef002', 'V2', 0.3200, 0.3300);
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `ProductID`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(1, '120', 'Wide', 'B2-U0-G1', NULL, 'Category1', NULL, 'General optical specs', 'UGR1', 80, 75, 120, '30', 90, 85, 'Class I', 1, 50000, 40000, 30000, NULL, 'L1', '500x200', 1200, 15, 30, 'UGR19', 'Type A', NULL, 101, 1.5, 20, 18, 0.1),
+(2, '90', 'Narrow', 'B1-U0-G1', NULL, 'Category2', NULL, 'Specific optical specs', 'UGR2', 70, 65, 110, '25', 80, 75, 'Class II', 2, 60000, 50000, 40000, NULL, 'L2', '600x300', 1100, 20, 35, 'UGR22', 'Type B', NULL, 102, 1.3, 18, 16, 0.2);
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `CutOutSize`, `DimensionDiagram`, `Dimensions`, `FinishColor`, `FinishIcon`, `FinishType`, `HousingMaterial`, `MiscellaneousInfo`, `MountingType`, `Mounts`, `OpticMaterial`, `ProductID`, `Weight`)
+VALUES
+(1, '100x200mm', NULL, '200x300x400mm', 'Black', NULL, 'Matte', 'Aluminum', 'Standard construction', 'Ceiling', 'Surface', 'Glass', 101, 2.5),
+(2, '150x250mm', NULL, '250x350x450mm', 'White', NULL, 'Glossy', 'Plastic', 'Specific construction', 'Wall', 'Recessed', 'Polycarbonate', 102, 3.0);
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(1, 'Modern Collection', 'Lighting', 'Indoor'),
+(2, 'Classic Collection', 'Lighting', 'Outdoor');
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(1, 1, NULL, 'P001', 1, 1, 1),
+(2, 2, NULL, 'P002', 2, 2, 2);
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(1, 'SubFamily for high-performance lights', 'High-Performance', 'HP lights'),
+(2, 'SubFamily for economical lights', 'Economical', 'Eco lights');
+INSERT INTO `Suppliers` (`SupplierID`, `SupplierLogo`, `SupplierName`)
+VALUES
+(1, NULL, 'Supplier1'),
+(2, NULL, 'Supplier2');
