@@ -1,0 +1,70 @@
+USE `testdb`;
+
+-- Insert into Families table
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(3, '[[Overview]]^^The Ellipse is a suspended fitting, designed and created to showcase social areas in public and private buildings such as cafés, restaurants, meeting rooms, hallways and staircases.^^A totally unique family of luminaires comprising unusual and exciting shapes and finishes inspired by nature.^^The top centre of the shade is circular then widens into a triangular elliptical shape which changes when viewed from different angles.^^The luminaires are both decorative and functional and in an office environment provides a pleasant contrast to traditional workstation lighting.^^They can be mounted singly or grouped together in clusters of varying size and form to create imaginative and decorative lighting expressions.^^The perforated top shade means light can be projected to the ceiling providing a pleasant soft uplight effect.~~[[Design]]^^Shade in vacuum-formed synthetic materials in glossy black or white outer finish with matching colour ceiling rose (suitable for ceiling rakes up to 45°) and a 3-wire suspension system.~~[[Optic]]^^Opal acrylic diffuser & white reflector, with upward light via clear diffuser slots in upper housing.~~[[Electrical]]^^Integral electronic gear with 3m red textile flex.^^T5C versions DALI / Touch Dimmable. LED versions dimmable on request.~~[[Light source]]^^Energy efficient natural or warm white LEDs. CRI >80.^^T5C circular fluorescent, 2Gx13.', 'ELLIPSE', 'Ellipse');
+
+-- Insert into SubFamilies table
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(3, 'Downlight & Display', 'Downlight & Display', 'Downlight & Display');
+
+-- Insert into ProductGroups table
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(3, NULL, 'Interior', 'Pendants');
+
+-- Insert into Products table
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(3, 3, 'ellipse-hero.jpg', 'GLA-ELLIPSEB360', 3, 3, 1),
+(4, 3, 'ellipse-hero.jpg', 'GLA-ELLIPSEW360', 3, 3, 1);
+
+-- Insert into PhysicalConstructions table
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `ProductID`, `HousingMaterial`, `OpticMaterial`, `Weight`, `MiscellaneousInfo`, `FinishColor`, `FinishType`, `MountingType`, `Dimensions`, `CutOutSize`, `DimensionDiagram`, `FinishIcon`)
+VALUES
+(3, 3, 'Gloss acrylic', 'White opal acrylic', 1.5, 'Gloss acrylic body pendant in a range of light sources (incl. LED), sizes and colours^^Up & down illumination^^White opal acrylic diffuser', 'Black', 'Gloss', 'Ceiling', '200x300x400 mm', '150x150 mm', 'ellipse-diagram.jpg', 'black-icon.png'),
+(4, 4, 'Gloss acrylic', 'White opal acrylic', 1.5, 'Gloss acrylic body pendant in a range of light sources (incl. LED), sizes and colours^^Up & down illumination^^White opal acrylic diffuser', 'White', 'Gloss', 'Ceiling', '200x300x400 mm', '150x150 mm', 'ellipse-diagram.jpg', 'white-icon.png');
+
+-- Insert into ElectricalSpecifications table
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(3, 17, 'Integral electronic gear with 3m red textile flex. T5C versions DALI / Touch Dimmable. LED versions dimmable on request.', 0.1, '50Hz', 'Class II', 'LCP3', 'General specs for Ellipse B360', 0.95, 3, 230, 40, -10),
+(4, 17, 'Integral electronic gear with 3m red textile flex. T5C versions DALI / Touch Dimmable. LED versions dimmable on request.', 0.1, '50Hz', 'Class II', 'LCP4', 'General specs for Ellipse W360', 0.95, 4, 230, 40, -10);
+
+-- Insert into LEDCharacteristics table
+INSERT INTO `LEDCharacteristics` (`LEDID`, `ProductID`, `CCT`, `CRI`, `ChipSeries`, `MiscellaneousInfo`, `PrimaryChipSupplier`, `SecondaryChipSupplier`, `ChipCode`, `ChipVoltageRange`, `ChipForwardVoltageRating`, `ChipForwardCurrentRating`, `ArrayForwardVoltageRating`, `ArrayForwardCurrentRating`, `ArrayOutput`, `ArrayZhagaType`, `R9Value`, `DUV`, `WhitePointX`, `WhitePointY`, `PeakWaveLength`, `MOverPRatio`, `SPRatio`, `TM30Report`, `FidelityIndex`, `GamutIndex`, `LocalChromaShift`, `LocalHueShift`, `LocalColorFidelity`, `PLevel`, `VLevel`, `FLevel`, `LocalAverages`, `SDCMOverLife`, `SDCMInitial`, `RatedLife`, `InSituTempOfLEDChip`, `LEDModuleVf`, `LumenPercentage50000Hrs`)
+VALUES
+(3, 3, '3000K', '>80', 'Series1', 'Energy efficient natural or warm white LEDs.', 'Supplier1', 'Supplier2', 'Chip1', '2.8V-3.2V', '3V', '700mA', '24V', '700mA', '1500 lm', 'Zhaga Type 1', 15, 0.001, 0.31, 0.33, 455, 1.2, 2.0, 'TM30Report1', 90, 95, 0.5, 0.2, 90, 'P1', 'V1', 'F1', 'LocalAverages1', 5, 3, 50000, 85, '3V', 80),
+(4, 4, '3000K', '>80', 'Series1', 'Energy efficient natural or warm white LEDs.', 'Supplier1', 'Supplier2', 'Chip1', '2.8V-3.2V', '3V', '700mA', '24V', '700mA', '1500 lm', 'Zhaga Type 1', 15, 0.001, 0.31, 0.33, 455, 1.2, 2.0, 'TM30Report1', 90, 95, 0.5, 0.2, 90, 'P1', 'V1', 'F1', 'LocalAverages1', 5, 3, 50000, 85, '3V', 80);
+
+-- Insert into DriverSpecifications table
+INSERT INTO `DriverSpecifications` (`DriverID`, `ProductID`, `VersaluxDriverCode`, `Description`, `DriverSupplier`, `Control`, `WattsLoss`, `ForwardCurrentRating`, `ForwardVoltageRating`, `DriverSetting`, `MiscellaneousInfo`, `InputVoltageRangeMin`, `InputVoltageRangeMax`, `AOCIfRangeMin`, `AOCIfRangeMax`, `TypeCCurrent`, `TypeCVoltage`, `FixedOutput`, `Compatibility`, `ElectricalProtectionClass`, `DriverMounting`, `IP`, `TaC`, `CLO`, `VfRangeMin`, `VfRangeMax`, `SELVHV`, `ExtNTC`, `InrushCurrent`, `InrushTWidth`, `Surge`, `PowerFactor`, `LeakageCurrent`, `THDPercentage`, `PstLM`, `SVM`, `MaxOperatingTemp`)
+VALUES
+(3, 3, 'DR001', 'High-performance driver for Ellipse B360', 'Supplier1', 'DALI', 5, 700, 24, 'Manual', 'Advanced driver', 100, 240, 100, 700, 700, 24, 'Yes', 'DALI1, DALI2, SwitchDim, Casambi', 'Class II', 'Surface', 'IP67', 85, 'Yes', '2.8V', '3.2V', 'SELV', 'Yes', 10, 100, 2kV, 0.95, 0.5, 10, 1.0, 0.9, 85),
+(4, 4, 'DR001', 'High-performance driver for Ellipse W360', 'Supplier1', 'DALI', 5, 700, 24, 'Manual', 'Advanced driver', 100, 240, 100, 700, 700, 24, 'Yes', 'DALI1, DALI2, SwitchDim, Casambi', 'Class II', 'Surface', 'IP67', 85, 'Yes', '2.8V', '3.2V', 'SELV', 'Yes', 10, 100, 2kV, 0.95, 0.5, 10, 1.0, 0.9, 85);
+
+-- Insert into CertificateApprovals table
+INSERT INTO `CertificateApprovals` (`CertificateID`, `ProductID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(3, 3, 'sym-f-mark.png', 'Yes', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 1', 'IK08', 'IP65', 'General certificate for Ellipse B360', 40, -10, 'Yes', 'Rating A', 'Rating B', '2 years'),
+(4, 4, 'sym-f-mark.png', 'Yes', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 1', 'IK08', 'IP65', 'General certificate for Ellipse W360', 40, -10, 'Yes', 'Rating A', 'Rating B', '2 years');
+
+-- Insert into IESFiles table
+INSERT INTO `IESFiles` (`IESFileID`, `ProductID`, `IESFile`, `IESFileDescription`, `IESFileName`)
+VALUES
+(3, 3, NULL, 'Standard IES file for Ellipse B360', 'EllipseB360.ies'),
+(4, 4, NULL, 'Standard IES file for Ellipse W360', 'EllipseW360.ies');
+
+-- Insert into OpticalSpecifications table
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `ProductID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(3, 3, '120°', 'Wide', 'B2-U0-G1', 'ellipse-cartesian.png', 'Category1', 'ellipse-conelux.png', 'General optical specs for Ellipse B360', 'UGR1', 1600, 1500, 100, '30', 1700, 1600, 'Class I', 3, 50000, 40000, 30000, 'ellipse-lcs.png', 'L1', '50x50x50 mm', 2000, 45, 55, 'UGR19', 'Type A', 'ellipse-polar.png', '1.1, 1.2, 1.3', 100, 90, 0.1),
+(4, 4, '120°', 'Wide', 'B2-U0-G1', 'ellipse-cartesian.png', 'Category1', 'ellipse-conelux.png', 'General optical specs for Ellipse W360', 'UGR1', 1600, 1500, 100, '30', 1700, 1600, 'Class I', 4, 50000, 40000, 30000, 'ellipse-lcs.png', 'L1', '50x50x50 mm', 2000, 45, 55, 'UGR19', 'Type A', 'ellipse-polar.png', '1.1, 1.2, 1.3', 100, 90, 0.1);
+
+-- Insert into Accessories table
+INSERT INTO `Accessories` (`AccessoryID`, `ProductID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`)
+VALUES
+(3, 3, 'ACC003', 'Metal', 'Mounting Bracket for Ellipse B360', 'ellipse-bracket-diagram.png', 'ellipse-bracket-hero.jpg', 'Bracket for easy mounting', 'ellipse-bracket-symbol.png', 'Use with Ellipse B360 models'),
+(4, 4, 'ACC004', 'Plastic', 'Light Diffuser for Ellipse W360', 'ellipse-diffuser-diagram.png', 'ellipse-diffuser-hero.jpg', 'Diffuser for soft lighting', 'ellipse-diffuser-symbol.png', 'Compatible with Ellipse W360 models');
