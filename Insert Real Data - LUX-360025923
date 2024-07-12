@@ -1,0 +1,61 @@
+USE `testdb`;
+
+-- Insert into Families table
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(6, '[[Overview]]^^The 360 task light has a distinct form and great functionality. A custom made LED module in a horizontal lamp head provides a broad, directional light. The rotating base and flexible arm takes up little space when the task light is pushed back. When fully extended, the light covers a large area, while the lamp head stays parallel with the surface – providing asymmetric and ergonomically correct workstation lighting. 360 is dimmable and has an automatic shut-off after 4 or 9h in order to save energy. The table base is included. Not available with table clamp or wall mount.~~[[Designer]]^^360 was designed by Stephan Copeland, who has been involved with desk lamp innovation for 25 years. He is particularly concerned about the interaction between lamp and user: "A successful desk lamp means close user proximity and an agile interaction. 360 is designed to glide when directed and be a peaceful form presence to live with," he says.^^Born and raised in Montreal, Canada, Stephan Copeland has worked as a freelance designer since 1989 when he launched Copeland Studio in Los Angeles. He is currently based in Merion, Pennsylvania.~~[[Movement]]^^The design of the Luxo 360 task lamp ensures that the optic head is always kept parallel to its base for glare reduction.^^The toroidal table base allows infinite rotation to place the arm base at any location around its tracking line, and the arm base has infinite rotation in its linkage with the table base allowing for an amazing array of positioning options. To cap this off, the head to arm connection has almost 360° of rotation also, giving the user ultimate workstation flexibility.~~[[LED]]^^360 is equipped with state of the art light emitting diodes, which provide bright, warm light. Light emitting diodes have an incredibly long life span. The diodes in 360 have a life expectancy of 50,000 hours. That means 25 years or more with normal office use. You may never have to change the light source!^^The Luxo 360 series is supplied with 1 x 6W integrated LED module, featuring a warm white 3250K colour temperature, with a good colour rendition index (CRI) of Ra80.~~[[Standard colour finishes]]^^A selection of highly usable colour finishes is available on Luxo desk lamps so as to blend optimally with a wide range of interior styles. The 360 series is available in Black, Aluminium Grey or White (Glossy Black available on request).~~[[Construction]]^^High quality construction is assured via the full metal body made of aluminium and zinc-steel, with precision engineered components designed to keep the 360 series flexible and sturdy for years of faithful service.~~[[Mounting]]^^The Luxo 360 series is standard with its specialised table base; no other mounting options are available for this series.~~[[Dimmability]]^^The light output of the Luxo 360 can be adjusted via an inbuilt dimmer - merely holding the unobtrusive on/off switch 'dims' the unit up or down to match the user's requirements and height setting of the LED head.~~[[Timer]]^^An automatic shut-off timer is included in each Luxo 360 series task lamp - it is set automatically to turn the LEDs off after 9 hours operation, but may be set to either 4 hours or back to 9 hours whenever the user desires.~~[[Optics]]^^The LEDs in the Luxo 360 series are set for optimum asymmetric throw, with white polycarbonate reflector material and frosted diffuser.~~[[Power supply]]^^Each Luxo 360 task light is supplied complete with an ELV cable and quick disconnect plug which is matched to the supplied 240V AC power adaptor, enabling the wiring to pass through small holes that the adaptor could not fit.~~[[5 year warranty]]^^From 1st October 2010, Glamox Luxo Lighting gives a 5 year warranty against manufacturing and material defects on all Luxo branded products. If the warranty conditions are fulfilled, Glamox Luxo Lighting will either repair or replace the products with new fully functional products.', '360', '360');
+
+-- Insert into SubFamilies table
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(6, 'Medical & Task', 'Medical & Task', 'Medical & Task');
+
+-- Insert into ProductGroups table
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(6, NULL, 'Interior', 'Task Lighting');
+
+-- Insert into Products table
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(9, 6, 'luxo-task-hero.jpg', 'LUX-360025923', 6, 6, 1);
+
+-- Insert into PhysicalConstructions table
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `ProductID`, `HousingMaterial`, `OpticMaterial`, `Weight`, `MiscellaneousInfo`, `FinishColor`, `FinishType`, `MountingType`, `Dimensions`, `CutOutSize`, `DimensionDiagram`, `FinishIcon`)
+VALUES
+(9, 9, 'Aluminium and zinc-steel', 'White polycarbonate', 1.0, 'LED workstation task light^^Compact, yet highly flexible design^^Powerful asymmetric, dimmable illumination', 'Black', 'Matte', 'Table', '200x200x500 mm', '100x100 mm', 'luxo-diagram.jpg', 'black-icon.png');
+
+-- Insert into ElectricalSpecifications table
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(9, 6, 'ELV cable and quick disconnect plug with 240V AC power adaptor', 0.03, '50Hz', 'Class II', 'LCP9', 'General specs for 360 series', 0.95, 9, 240, 35, -10);
+
+-- Insert into LEDCharacteristics table
+INSERT INTO `LEDCharacteristics` (`LEDID`, `ProductID`, `CCT`, `CRI`, `ChipSeries`, `MiscellaneousInfo`, `PrimaryChipSupplier`, `SecondaryChipSupplier`, `ChipCode`, `ChipVoltageRange`, `ChipForwardVoltageRating`, `ChipForwardCurrentRating`, `ArrayForwardVoltageRating`, `ArrayForwardCurrentRating`, `ArrayOutput`, `ArrayZhagaType`, `R9Value`, `DUV`, `WhitePointX`, `WhitePointY`, `PeakWaveLength`, `MOverPRatio`, `SPRatio`, `TM30Report`, `FidelityIndex`, `GamutIndex`, `LocalChromaShift`, `LocalHueShift`, `LocalColorFidelity`, `PLevel`, `VLevel`, `FLevel`, `LocalAverages`, `SDCMOverLife`, `SDCMInitial`, `RatedLife`, `InSituTempOfLEDChip`, `LEDModuleVf`, `LumenPercentage50000Hrs`)
+VALUES
+(9, 9, '3250K', 'Ra80', 'Series3', 'State of the art light emitting diodes, which provide bright, warm light. Light emitting diodes have an incredibly long life span. The diodes in 360 have a life expectancy of 50,000 hours. That means 25 years or more with normal office use.', 'Supplier3', 'Supplier4', 'Chip3', '2.8V-3.1V', '3V', '600mA', '24V', '600mA', '1200 lm', 'Zhaga Type 3', 19, 0.002, 0.32, 0.34, 460, 1.3, 2.1, 'TM30Report3', 92, 96, 0.6, 0.3, 92, 'P3', 'V3', 'F3', 'LocalAverages3', 6, 4, 52000, 87, '3V', 82);
+
+-- Insert into DriverSpecifications table
+INSERT INTO `DriverSpecifications` (`DriverID`, `ProductID`, `VersaluxDriverCode`, `Description`, `DriverSupplier`, `Control`, `WattsLoss`, `ForwardCurrentRating`, `ForwardVoltageRating`, `DriverSetting`, `MiscellaneousInfo`, `InputVoltageRangeMin`, `InputVoltageRangeMax`, `AOCIfRangeMin`, `AOCIfRangeMax`, `TypeCCurrent`, `TypeCVoltage`, `FixedOutput`, `Compatibility`, `ElectricalProtectionClass`, `DriverMounting`, `IP`, `TaC`, `CLO`, `VfRangeMin`, `VfRangeMax`, `SELVHV`, `ExtNTC`, `InrushCurrent`, `InrushTWidth`, `Surge`, `PowerFactor`, `LeakageCurrent`, `THDPercentage`, `PstLM`, `SVM`, `MaxOperatingTemp`)
+VALUES
+(9, 9, 'DR003', 'High-performance driver for 360 series', 'Supplier3', '0-10V', 6, 600, 24, 'Automatic', 'Standard driver for 360 series', 110, 260, 110, 600, 600, 24, 'No', '0-10V, DALI', 'Class I', 'Table', 'IP65', 90, 'No', '2.8V', '3.1V', 'HV', 'Yes', 12, 80, 2.5kV, 0.90, 0.3, 12, 1.2, 0.8, 90);
+
+-- Insert into CertificateApprovals table
+INSERT INTO `CertificateApprovals` (`CertificateID`, `ProductID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(9, 9, 'sym-class-2.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP66', 'General certificate for 360 series', 50, -10, 'Yes', 'Rating B', 'Rating A', '5 years');
+
+-- Insert into IESFiles table
+INSERT INTO `IESFiles` (`IESFileID`, `ProductID`, `IESFile`, `IESFileDescription`, `IESFileName`)
+VALUES
+(9, 9, NULL, 'Standard IES file for 360 series', '360.ies');
+
+-- Insert into OpticalSpecifications table
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `ProductID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(9, 9, '120°', 'Wide', 'B2-U0-G1', '360-cartesian.png', 'Category3', '360-conelux.png', 'General optical specs for 360 series', 'UGR3', 600, 550, 100, '30', 650, 600, 'Class III', 9, 52000, 42000, 32000, '360-lcs.png', 'L3', '60x60x60 mm', 700, 30, 60, 'UGR19', 'Type C', '360-polar.png', '1.2, 1.3, 1.4', 100, 90, 0.2);
+
+-- Insert into Accessories table
+INSERT INTO `Accessories` (`AccessoryID`, `ProductID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`)
+VALUES
+(9, 9, 'ACC009', 'Metal', 'Mounting Bracket for 360 series', '360-bracket-diagram.png', '360-bracket-hero.jpg', 'Bracket for easy mounting', '360-bracket-symbol.png', 'Use with 360 series models');
