@@ -1,0 +1,70 @@
+USE `testdb`;
+
+-- Insert into Families table
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(7, '[[Overview]]^^Heavy duty luminaire designed for a range of harsh & corrosive environments.~~[[Design]]^^Marine grade 316 stainless steel, deep drawn, seamless housing, finished in white powder-coat.^^Heavy duty trunnion arm mount in 6mm 316 stainless steel, uncoated. Trunnion connected to housing via choice of standard configuration or vibration absorbing wire or rubber shock mounts.^^Marine-grade 316 stainless steel diffuser clips, for tool-less entry. Special lampholders.~~[[Optic]]^^Anodised aluminium flood-beam reflector, protected by clear borosilicate glass lens, gasketed with EDPM silicone rubber to IP67.~~[[Electrical]]^^Connection via externally mounted ABS junction box with brass cable gland~~[[Light source]]^^240V special halogen in standard or high output versions.', 'DUKE', 'DUKE');
+
+-- Insert into SubFamilies table
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(7, 'Mining & Marine', 'Mining & Marine', 'Mining & Marine');
+
+-- Insert into ProductGroups table
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(7, NULL, 'Floodlights', NULL);
+
+-- Insert into Products table
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(10, 7, NULL, 'GLA-DUKEQIRX71000N', 7, 7, 1),
+(11, 7, NULL, 'GLA-DUKEQIRX71000W', 7, 7, 1);
+
+-- Insert into PhysicalConstructions table
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `ProductID`, `HousingMaterial`, `OpticMaterial`, `Weight`, `MiscellaneousInfo`, `FinishColor`, `FinishType`, `MountingType`, `Dimensions`, `CutOutSize`, `DimensionDiagram`, `FinishIcon`)
+VALUES
+(10, 10, 'Marine grade 316 stainless steel', 'Clear borosilicate glass', 5.0, 'Deep drawn 316 stainless-steel floodlight^^Special lamp & lampholders^^High output halogen lamps', 'White', 'Powder-coat', 'Trunnion arm', '400x300x250 mm', NULL, NULL, 'sym-ip67.png'),
+(11, 11, 'Marine grade 316 stainless steel', 'Clear borosilicate glass', 5.0, 'Deep drawn 316 stainless-steel floodlight^^Special lamp & lampholders^^High output halogen lamps', 'White', 'Powder-coat', 'Trunnion arm', '400x300x250 mm', NULL, NULL, 'sym-ip67.png');
+
+-- Insert into ElectricalSpecifications table
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(10, 1000, 'Connection via externally mounted ABS junction box with brass cable gland', 4.2, '50Hz', 'Class I', 'LCP10', 'General specs for DUKE series', 0.98, 10, 240, 40, -20),
+(11, 1000, 'Connection via externally mounted ABS junction box with brass cable gland', 4.2, '50Hz', 'Class I', 'LCP11', 'General specs for DUKE series', 0.98, 11, 240, 40, -20);
+
+-- Insert into LEDCharacteristics table
+INSERT INTO `LEDCharacteristics` (`LEDID`, `ProductID`, `CCT`, `CRI`, `ChipSeries`, `MiscellaneousInfo`, `PrimaryChipSupplier`, `SecondaryChipSupplier`, `ChipCode`, `ChipVoltageRange`, `ChipForwardVoltageRating`, `ChipForwardCurrentRating`, `ArrayForwardVoltageRating`, `ArrayForwardCurrentRating`, `ArrayOutput`, `ArrayZhagaType`, `R9Value`, `DUV`, `WhitePointX`, `WhitePointY`, `PeakWaveLength`, `MOverPRatio`, `SPRatio`, `TM30Report`, `FidelityIndex`, `GamutIndex`, `LocalChromaShift`, `LocalHueShift`, `LocalColorFidelity`, `PLevel`, `VLevel`, `FLevel`, `LocalAverages`, `SDCMOverLife`, `SDCMInitial`, `RatedLife`, `InSituTempOfLEDChip`, `LEDModuleVf`, `LumenPercentage50000Hrs`)
+VALUES
+(10, 10, 'Halogen', NULL, 'Series4', 'Halogen R7s special lamp', 'Supplier4', 'Supplier5', 'Chip4', '230V', '240V', '4.2A', '240V', '4.2A', '1000 lm', 'Zhaga Type 4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 11, 'Halogen', NULL, 'Series4', 'Halogen R7s special lamp', 'Supplier4', 'Supplier5', 'Chip4', '230V', '240V', '4.2A', '240V', '4.2A', '1000 lm', 'Zhaga Type 4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- Insert into DriverSpecifications table
+INSERT INTO `DriverSpecifications` (`DriverID`, `ProductID`, `VersaluxDriverCode`, `Description`, `DriverSupplier`, `Control`, `WattsLoss`, `ForwardCurrentRating`, `ForwardVoltageRating`, `DriverSetting`, `MiscellaneousInfo`, `InputVoltageRangeMin`, `InputVoltageRangeMax`, `AOCIfRangeMin`, `AOCIfRangeMax`, `TypeCCurrent`, `TypeCVoltage`, `FixedOutput`, `Compatibility`, `ElectricalProtectionClass`, `DriverMounting`, `IP`, `TaC`, `CLO`, `VfRangeMin`, `VfRangeMax`, `SELVHV`, `ExtNTC`, `InrushCurrent`, `InrushTWidth`, `Surge`, `PowerFactor`, `LeakageCurrent`, `THDPercentage`, `PstLM`, `SVM`, `MaxOperatingTemp`)
+VALUES
+(10, 10, 'DR004', 'Standard driver for DUKE series', 'Supplier4', 'On/Off', 8, 4.2, 240, 'Manual', 'Standard driver for DUKE series', 110, 260, 110, 600, 600, 240, 'Yes', 'On/Off', 'Class I', 'Trunnion arm', 'IP67', 40, 'No', '2.8V', '3.1V', 'HV', 'No', 12, 80, 2.5kV, 0.90, 0.3, 12, 1.2, 0.8, 90),
+(11, 11, 'DR005', 'Standard driver for DUKE series', 'Supplier4', 'On/Off', 8, 4.2, 240, 'Manual', 'Standard driver for DUKE series', 110, 260, 110, 600, 600, 240, 'Yes', 'On/Off', 'Class I', 'Trunnion arm', 'IP67', 40, 'No', '2.8V', '3.1V', 'HV', 'No', 12, 80, 2.5kV, 0.90, 0.3, 12, 1.2, 0.8, 90);
+
+-- Insert into CertificateApprovals table
+INSERT INTO `CertificateApprovals` (`CertificateID`, `ProductID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(10, 10, 'sym-ip67.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP67', 'General certificate for DUKE series', 50, -20, 'Yes', 'Rating B', 'Rating A', '5 years'),
+(11, 11, 'sym-ip67.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP67', 'General certificate for DUKE series', 50, -20, 'Yes', 'Rating B', 'Rating A', '5 years');
+
+-- Insert into IESFiles table
+INSERT INTO `IESFiles` (`IESFileID`, `ProductID`, `IESFile`, `IESFileDescription`, `IESFileName`)
+VALUES
+(10, 10, NULL, 'Standard IES file for DUKE series', 'DUKE-Narrow.ies'),
+(11, 11, NULL, 'Standard IES file for DUKE series', 'DUKE-Wide.ies');
+
+-- Insert into OpticalSpecifications table
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `ProductID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(10, 10, '15°', 'Narrow', 'B2-U0-G1', 'DUKE-cartesian-narrow.png', 'Category4', 'DUKE-conelux-narrow.png', 'General optical specs for DUKE series', 'UGR4', 600, 550, 100, '30', 650, 600, 'Class III', 10, 52000, 42000, 32000, 'DUKE-lcs-narrow.png', 'L4', '60x60x60 mm', 700, 30, 60, 'UGR19', 'Type D', 'DUKE-polar-narrow.png', '1.2, 1.3, 1.4', 100, 90, 0.2),
+(11, 11, '30°', 'Wide', 'B2-U0-G1', 'DUKE-cartesian-wide.png', 'Category4', 'DUKE-conelux-wide.png', 'General optical specs for DUKE series', 'UGR4', 600, 550, 100, '30', 650, 600, 'Class III', 11, 52000, 42000, 32000, 'DUKE-lcs-wide.png', 'L4', '60x60x60 mm', 700, 30, 60, 'UGR19', 'Type D', 'DUKE-polar-wide.png', '1.2, 1.3, 1.4', 100, 90, 0.2);
+
+-- Insert into Accessories table
+INSERT INTO `Accessories` (`AccessoryID`, `ProductID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`)
+VALUES
+(10, 10, 'ACC010', 'Metal', 'Mounting Bracket for DUKE series', 'DUKE-bracket-diagram.png', 'DUKE-bracket-hero.jpg', 'Bracket for easy mounting', 'DUKE-bracket-symbol.png', 'Use with DUKE series models'),
+(11, 11, 'ACC011', 'Metal', 'Mounting Bracket for DUKE series', 'DUKE-bracket-diagram.png', 'DUKE-bracket-hero.jpg', 'Bracket for easy mounting', 'DUKE-bracket-symbol.png', 'Use with DUKE series models');
