@@ -1,0 +1,70 @@
+USE `testdb`;
+
+-- Insert into Families table
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(8, '[[Overview]]^^Compact, high performance low wattage floodlight with a versatile set of optics.~~[[Design]]^^Body and lens door in die-cast aluminium with black polyester powder.~~[[Optic]]^^Brightened and anodized aluminium reflectors in Super-Intensive (SI), Concentrating (C), Symmetrical (SM) or Asymmetrical (AS) beams. Flat tempered protection glass & EDPM gasket for excellent heat and weathering resisting performance.~~[[Electrical]]^^Integral 240V gear.~~[[Light source]]^^Single and Double-ended metal halide, G12 & RX7s.', 'TAU FLOODLIGHT', 'TAU FLOODLIGHT');
+
+-- Insert into SubFamilies table
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(8, 'Flood & Area', 'Flood & Area', 'Flood & Area');
+
+-- Insert into ProductGroups table
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(8, NULL, 'Floodlights', NULL);
+
+-- Insert into Products table
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(12, 8, NULL, 'FAE-TAUCSIMHTS0070', 8, 8, 1),
+(13, 8, NULL, 'FAE-TAUCSIMHTS0150', 8, 8, 1);
+
+-- Insert into PhysicalConstructions table
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `ProductID`, `HousingMaterial`, `OpticMaterial`, `Weight`, `MiscellaneousInfo`, `FinishColor`, `FinishType`, `MountingType`, `Dimensions`, `CutOutSize`, `DimensionDiagram`, `FinishIcon`)
+VALUES
+(12, 12, 'Die-cast aluminium', 'Flat tempered protection glass', 4.0, 'Compact, versatile floodlight luminaire^^Multiple beam spread options^^IP65 cast-aluminium construction', 'Black', 'Polyester powder', 'Surface', '300x250x200 mm', NULL, NULL, 'sym-f-mark.png'),
+(13, 13, 'Die-cast aluminium', 'Flat tempered protection glass', 4.0, 'Compact, versatile floodlight luminaire^^Multiple beam spread options^^IP65 cast-aluminium construction', 'Black', 'Polyester powder', 'Surface', '300x250x200 mm', NULL, NULL, 'sym-f-mark.png');
+
+-- Insert into ElectricalSpecifications table
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(12, 70, 'Integral 240V gear', 0.3, '50Hz', 'Class I', 'LCP12', 'General specs for TAU FLOODLIGHT series', 0.98, 12, 240, 40, -20),
+(13, 150, 'Integral 240V gear', 0.6, '50Hz', 'Class I', 'LCP13', 'General specs for TAU FLOODLIGHT series', 0.98, 13, 240, 40, -20);
+
+-- Insert into LEDCharacteristics table
+INSERT INTO `LEDCharacteristics` (`LEDID`, `ProductID`, `CCT`, `CRI`, `ChipSeries`, `MiscellaneousInfo`, `PrimaryChipSupplier`, `SecondaryChipSupplier`, `ChipCode`, `ChipVoltageRange`, `ChipForwardVoltageRating`, `ChipForwardCurrentRating`, `ArrayForwardVoltageRating`, `ArrayForwardCurrentRating`, `ArrayOutput`, `ArrayZhagaType`, `R9Value`, `DUV`, `WhitePointX`, `WhitePointY`, `PeakWaveLength`, `MOverPRatio`, `SPRatio`, `TM30Report`, `FidelityIndex`, `GamutIndex`, `LocalChromaShift`, `LocalHueShift`, `LocalColorFidelity`, `PLevel`, `VLevel`, `FLevel`, `LocalAverages`, `SDCMOverLife`, `SDCMInitial`, `RatedLife`, `InSituTempOfLEDChip`, `LEDModuleVf`, `LumenPercentage50000Hrs`)
+VALUES
+(12, 12, 'Quartz MH', NULL, 'Series5', 'G12 & RX7s special lamp', 'Supplier6', 'Supplier7', 'Chip5', '230V', '240V', '0.3A', '240V', '0.3A', '70 lm', 'Zhaga Type 5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 13, 'Quartz MH', NULL, 'Series5', 'G12 & RX7s special lamp', 'Supplier6', 'Supplier7', 'Chip5', '230V', '240V', '0.6A', '240V', '0.6A', '150 lm', 'Zhaga Type 5', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- Insert into DriverSpecifications table
+INSERT INTO `DriverSpecifications` (`DriverID`, `ProductID`, `VersaluxDriverCode`, `Description`, `DriverSupplier`, `Control`, `WattsLoss`, `ForwardCurrentRating`, `ForwardVoltageRating`, `DriverSetting`, `MiscellaneousInfo`, `InputVoltageRangeMin`, `InputVoltageRangeMax`, `AOCIfRangeMin`, `AOCIfRangeMax`, `TypeCCurrent`, `TypeCVoltage`, `FixedOutput`, `Compatibility`, `ElectricalProtectionClass`, `DriverMounting`, `IP`, `TaC`, `CLO`, `VfRangeMin`, `VfRangeMax`, `SELVHV`, `ExtNTC`, `InrushCurrent`, `InrushTWidth`, `Surge`, `PowerFactor`, `LeakageCurrent`, `THDPercentage`, `PstLM`, `SVM`, `MaxOperatingTemp`)
+VALUES
+(12, 12, 'DR006', 'Standard driver for TAU FLOODLIGHT series', 'Supplier6', 'On/Off', 5, 0.3, 240, 'Manual', 'Standard driver for TAU FLOODLIGHT series', 110, 260, 110, 600, 600, 240, 'Yes', 'On/Off', 'Class I', 'Surface', 'IP65', 40, 'No', '2.8V', '3.1V', 'HV', 'No', 10, 70, 2.5kV, 0.90, 0.3, 12, 1.2, 0.8, 90),
+(13, 13, 'DR007', 'Standard driver for TAU FLOODLIGHT series', 'Supplier6', 'On/Off', 5, 0.6, 240, 'Manual', 'Standard driver for TAU FLOODLIGHT series', 110, 260, 110, 600, 600, 240, 'Yes', 'On/Off', 'Class I', 'Surface', 'IP65', 40, 'No', '2.8V', '3.1V', 'HV', 'No', 10, 70, 2.5kV, 0.90, 0.3, 12, 1.2, 0.8, 90);
+
+-- Insert into CertificateApprovals table
+INSERT INTO `CertificateApprovals` (`CertificateID`, `ProductID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(12, 12, 'sym-f-mark.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP65', 'General certificate for TAU FLOODLIGHT series', 50, -20, 'Yes', 'Rating B', 'Rating A', '5 years'),
+(13, 13, 'sym-f-mark.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP65', 'General certificate for TAU FLOODLIGHT series', 50, -20, 'Yes', 'Rating B', 'Rating A', '5 years');
+
+-- Insert into IESFiles table
+INSERT INTO `IESFiles` (`IESFileID`, `ProductID`, `IESFile`, `IESFileDescription`, `IESFileName`)
+VALUES
+(12, 12, NULL, 'Standard IES file for TAU FLOODLIGHT series', 'TAU-Super-Intensive-70W.ies'),
+(13, 13, NULL, 'Standard IES file for TAU FLOODLIGHT series', 'TAU-Super-Intensive-150W.ies');
+
+-- Insert into OpticalSpecifications table
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `ProductID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(12, 12, 'Super Intensive', 'Super Intensive', 'B2-U0-G1', 'TAU-cartesian-super-intensive-70W.png', 'Category5', 'TAU-conelux-super-intensive-70W.png', 'General optical specs for TAU FLOODLIGHT series', 'UGR5', 1000, 950, 100, '30', 1050, 1000, 'Class IV', 12, 60000, 50000, 40000, 'TAU-lcs-super-intensive-70W.png', 'L5', '50x50x50 mm', 1500, 30, 60, 'UGR19', 'Type E', 'TAU-polar-super-intensive-70W.png', '1.5, 1.6, 1.7', 100, 90, 0.2),
+(13, 13, 'Super Intensive', 'Super Intensive', 'B2-U0-G1', 'TAU-cartesian-super-intensive-150W.png', 'Category5', 'TAU-conelux-super-intensive-150W.png', 'General optical specs for TAU FLOODLIGHT series', 'UGR5', 2000, 1900, 100, '30', 2050, 2000, 'Class IV', 13, 60000, 50000, 40000, 'TAU-lcs-super-intensive-150W.png', 'L5', '50x50x50 mm', 1500, 30, 60, 'UGR19', 'Type E', 'TAU-polar-super-intensive-150W.png', '1.5, 1.6, 1.7', 100, 90, 0.2);
+
+-- Insert into Accessories table
+INSERT INTO `Accessories` (`AccessoryID`, `ProductID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`)
+VALUES
+(12, 12, 'ACC012', 'Metal', 'Mounting Bracket for TAU FLOODLIGHT series', 'TAU-bracket-diagram.png', 'TAU-bracket-hero.jpg', 'Bracket for easy mounting', 'TAU-bracket-symbol.png', 'Use with TAU FLOODLIGHT series models'),
+(13, 13, 'ACC013', 'Metal', 'Mounting Bracket for TAU FLOODLIGHT series', 'TAU-bracket-diagram.png', 'TAU-bracket-hero.jpg', 'Bracket for easy mounting', 'TAU-bracket-symbol.png', 'Use with TAU FLOODLIGHT series models');
