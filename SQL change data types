@@ -7,9 +7,10 @@ ALTER TABLE `LEDCharacteristics` MODIFY `ChipForwardVoltageRating` VARCHAR(10);
 ALTER TABLE `LEDCharacteristics` MODIFY `ArrayForwardVoltageRating` VARCHAR(10);
 ALTER TABLE `LEDCharacteristics` MODIFY `ChipForwardCurrentRating` VARCHAR(10);
 ALTER TABLE `LEDCharacteristics` MODIFY `ArrayForwardCurrentRating` VARCHAR(10);
-ALTER TABLE `LEDCharacteristics` MODIFY `ArrayOutput` VARCHAR(10);
+ALTER TABLE `LEDCharacteristics` MODIFY `ArrayOutput` VARCHAR(20);
 
 -- Alter the DriverSpecifications table
 ALTER TABLE `DriverSpecifications` MODIFY `VersaluxDriverCode` VARCHAR(10);
 ALTER TABLE `DriverSpecifications` MODIFY `VfRangeMin` VARCHAR(10);
 ALTER TABLE `DriverSpecifications` MODIFY `VfRangeMax` VARCHAR(10);
+ALTER TABLE `DriverSpecifications` MODIFY `ForwardCurrentRating` VARCHAR(10);
