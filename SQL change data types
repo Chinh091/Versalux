@@ -14,6 +14,7 @@ ALTER TABLE `DriverSpecifications` MODIFY `VersaluxDriverCode` VARCHAR(10);
 ALTER TABLE `DriverSpecifications` MODIFY `VfRangeMin` VARCHAR(10);
 ALTER TABLE `DriverSpecifications` MODIFY `VfRangeMax` VARCHAR(10);
 
+
 -- Alter the OpticalSpecifications table
 ALTER TABLE `OpticalSpecifications` MODIFY `Efficacy` VARCHAR(10);
 ALTER TABLE `OpticalSpecifications` MODIFY `MaxIntensity` VARCHAR(10);
@@ -21,3 +22,5 @@ ALTER TABLE `OpticalSpecifications` MODIFY `MaxIntensityAngleH` VARCHAR(10);
 ALTER TABLE `OpticalSpecifications` MODIFY `MaxIntensityAngleV` VARCHAR(10);
 ALTER TABLE `OpticalSpecifications` MODIFY `UpwardOutputAdvertised` VARCHAR(10);
 ALTER TABLE `OpticalSpecifications` MODIFY `UpwardOutputReal` VARCHAR(10);
+ALTER TABLE `OpticalSpecifications` MODIFY `SpacingCriteria` VARCHAR(20);
+
