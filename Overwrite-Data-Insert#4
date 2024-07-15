@@ -1,0 +1,261 @@
+USE `defaultdb`;
+
+-- Insert into Families table with overwrite
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(3, 'The Ellipse is a suspended fitting for social areas like cafés, restaurants, meeting rooms, hallways, and staircases. Unique shapes and finishes inspired by nature. The shade is circular at the top and widens into a triangular elliptical shape. Decorative and functional, providing a pleasant contrast to traditional workstation lighting. Can be mounted singly or in clusters to create imaginative lighting. The perforated top shade projects light to the ceiling for a soft uplight effect. Shade in glossy black or white with a matching ceiling rose and a 3-wire suspension system. Optic: Opal acrylic diffuser & white reflector with upward light. Integral electronic gear with 3m red textile flex. T5C versions DALI / Touch Dimmable. LED versions dimmable on request. Light source: Energy efficient natural or warm white LEDs. CRI >80. T5C circular fluorescent, 2Gx13.', 'ELLIPSE', 'Ellipse')
+ON DUPLICATE KEY UPDATE
+`FamilyDescription` = VALUES(`FamilyDescription`),
+`FamilyName` = VALUES(`FamilyName`),
+`FamilyShortDescription` = VALUES(`FamilyShortDescription`);
+
+-- Insert into SubFamilies table with overwrite
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(3, 'Downlight & Display', 'Downlight & Display', 'Downlight & Display')
+ON DUPLICATE KEY UPDATE
+`SubFamilyDescription` = VALUES(`SubFamilyDescription`),
+`SubFamilyName` = VALUES(`SubFamilyName`),
+`SubFamilyShortDescription` = VALUES(`SubFamilyShortDescription`);
+
+-- Insert into ProductGroups table with overwrite
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(3, NULL, 'Interior', 'Pendants')
+ON DUPLICATE KEY UPDATE
+`Collection` = VALUES(`Collection`),
+`ProductCategory` = VALUES(`ProductCategory`),
+`ProductSubCategory` = VALUES(`ProductSubCategory`);
+
+-- Insert into Products table with overwrite
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(3, 3, 'ellipse-hero.jpg', 'GLA-ELLIPSEB360', 3, 3, 1),
+(4, 3, 'ellipse-hero.jpg', 'GLA-ELLIPSEW360', 3, 3, 1)
+ON DUPLICATE KEY UPDATE
+`FamilyID` = VALUES(`FamilyID`),
+`HeroImage` = VALUES(`HeroImage`),
+`ProductCode` = VALUES(`ProductCode`),
+`ProductGroupID` = VALUES(`ProductGroupID`),
+`SubFamilyID` = VALUES(`SubFamilyID`),
+`SupplierID` = VALUES(`SupplierID`);
+
+-- Insert into PhysicalConstructions table with overwrite
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `ProductID`, `HousingMaterial`, `OpticMaterial`, `Weight`, `MiscellaneousInfo`, `FinishColor`, `FinishType`, `MountingType`, `Dimensions`, `CutOutSize`, `DimensionDiagram`, `FinishIcon`)
+VALUES
+(3, 3, 'Gloss acrylic', 'White opal acrylic', 1.5, 'Gloss acrylic body pendant with LED and other light sources. Up & down illumination. White opal acrylic diffuser.', 'Black', 'Gloss', 'Ceiling', '200x300x400 mm', '150x150 mm', 'ellipse-diagram.jpg', 'black-icon.png'),
+(4, 4, 'Gloss acrylic', 'White opal acrylic', 1.5, 'Gloss acrylic body pendant with LED and other light sources. Up & down illumination. White opal acrylic diffuser.', 'White', 'Gloss', 'Ceiling', '200x300x400 mm', '150x150 mm', 'ellipse-diagram.jpg', 'white-icon.png')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`HousingMaterial` = VALUES(`HousingMaterial`),
+`OpticMaterial` = VALUES(`OpticMaterial`),
+`Weight` = VALUES(`Weight`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`FinishColor` = VALUES(`FinishColor`),
+`FinishType` = VALUES(`FinishType`),
+`MountingType` = VALUES(`MountingType`),
+`Dimensions` = VALUES(`Dimensions`),
+`CutOutSize` = VALUES(`CutOutSize`),
+`DimensionDiagram` = VALUES(`DimensionDiagram`),
+`FinishIcon` = VALUES(`FinishIcon`);
+
+-- Insert into ElectricalSpecifications table with overwrite
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(3, 17, 'Integral electronic gear with 3m red textile flex. T5C versions DALI / Touch Dimmable. LED versions dimmable on request.', 0.1, '50Hz', 'Class II', 'LCP3', 'General specs for Ellipse B360', 0.95, 3, 230, 40, -10),
+(4, 17, 'Integral electronic gear with 3m red textile flex. T5C versions DALI / Touch Dimmable. LED versions dimmable on request.', 0.1, '50Hz', 'Class II', 'LCP4', 'General specs for Ellipse W360', 0.95, 4, 230, 40, -10)
+ON DUPLICATE KEY UPDATE
+`AdvertisedWatts` = VALUES(`AdvertisedWatts`),
+`ConnectionDescription` = VALUES(`ConnectionDescription`),
+`Current` = VALUES(`Current`),
+`Cycles` = VALUES(`Cycles`),
+`ElectricalClass` = VALUES(`ElectricalClass`),
+`LCP` = VALUES(`LCP`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`PowerFactor` = VALUES(`PowerFactor`),
+`ProductID` = VALUES(`ProductID`),
+`RatedVoltage` = VALUES(`RatedVoltage`),
+`TaMax` = VALUES(`TaMax`),
+`TaMin` = VALUES(`TaMin`);
+
+-- Insert into LEDCharacteristics table with overwrite
+INSERT INTO LEDCharacteristics (LEDID, ProductID, CCT, CRI, ChipSeries, MiscellaneousInfo, PrimaryChipSupplier, SecondaryChipSupplier, ChipCode, ChipVoltageRange, ChipForwardVoltageRating, ChipForwardCurrentRating, ArrayForwardVoltageRating, ArrayForwardCurrentRating, ArrayOutput, ArrayZhagaType, R9Value, DUV, WhitePointX, WhitePointY, PeakWaveLength, MOverPRatio, SPRatio, TM30Report, FidelityIndex, GamutIndex, LocalChromaShift, LocalHueShift, LocalColorFidelity, PLevel, VLevel, FLevel, LocalAverages, SDCMOverLife, SDCMInitial, RatedLife, InSituTempOfLEDChip, LEDModuleVf, LumenPercentage50000Hrs)
+VALUES
+(3, 3, '3000K', '>80', 'Series1', 'Energy efficient natural or warm white LEDs.', 'Supplier1', 'Supplier2', 'Chip1', '2.8-3.2', 3.0, 0.7, 24.0, 0.7, 1500.0, 'Zhaga Type 1', 15, 0.001, 0.31, 0.33, 455.0, 1.2, 2.0, 'TM30Report1', 90, 95, 0.5, 0.2, 90, 'P1', 'V1', 'F1', 'LocalAverages1', 5, 3, 50000, 85, 3.0, 80),
+(4, 4, '3000K', '>80', 'Series1', 'Energy efficient natural or warm white LEDs.', 'Supplier1', 'Supplier2', 'Chip1', '2.8-3.2', 3.0, 0.7, 24.0, 0.7, 1500.0, 'Zhaga Type 1', 15, 0.001, 0.31, 0.33, 455.0, 1.2, 2.0, 'TM30Report1', 90, 95, 0.5, 0.2, 90, 'P1', 'V1', 'F1', 'LocalAverages1', 5, 3, 50000, 85, 3.0, 80)
+ON DUPLICATE KEY UPDATE
+ProductID = VALUES(ProductID),
+CCT = VALUES(CCT),
+CRI = VALUES(CRI),
+ChipSeries = VALUES(ChipSeries),
+MiscellaneousInfo = VALUES(MiscellaneousInfo),
+PrimaryChipSupplier = VALUES(PrimaryChipSupplier),
+SecondaryChipSupplier = VALUES(SecondaryChipSupplier),
+ChipCode = VALUES(ChipCode),
+ChipVoltageRange = VALUES(ChipVoltageRange),
+ChipForwardVoltageRating = VALUES(ChipForwardVoltageRating),
+ChipForwardCurrentRating = VALUES(ChipForwardCurrentRating),
+ArrayForwardVoltageRating = VALUES(ArrayForwardVoltageRating),
+ArrayForwardCurrentRating = VALUES(ArrayForwardCurrentRating),
+ArrayOutput = VALUES(ArrayOutput),
+ArrayZhagaType = VALUES(ArrayZhagaType),
+R9Value = VALUES(R9Value),
+DUV = VALUES(DUV),
+WhitePointX = VALUES(WhitePointX),
+WhitePointY = VALUES(WhitePointY),
+PeakWaveLength = VALUES(PeakWaveLength),
+MOverPRatio = VALUES(MOverPRatio),
+SPRatio = VALUES(SPRatio),
+TM30Report = VALUES(TM30Report),
+FidelityIndex = VALUES(FidelityIndex),
+GamutIndex = VALUES(GamutIndex),
+LocalChromaShift = VALUES(LocalChromaShift),
+LocalHueShift = VALUES(LocalHueShift),
+LocalColorFidelity = VALUES(LocalColorFidelity),
+PLevel = VALUES(PLevel),
+VLevel = VALUES(VLevel),
+FLevel = VALUES(FLevel),
+LocalAverages = VALUES(LocalAverages),
+SDCMOverLife = VALUES(SDCMOverLife),
+SDCMInitial = VALUES(SDCMInitial),
+RatedLife = VALUES(RatedLife),
+InSituTempOfLEDChip = VALUES(InSituTempOfLEDChip),
+LEDModuleVf = VALUES(LEDModuleVf),
+LumenPercentage50000Hrs = VALUES(LumenPercentage50000Hrs);
+
+-- Insert into DriverSpecifications table with overwrite
+INSERT INTO `DriverSpecifications` (`DriverID`, `ProductID`, `VersaluxDriverCode`, `Description`, `DriverSupplier`, `Control`, `WattsLoss`, `ForwardCurrentRating`, `ForwardVoltageRating`, `DriverSetting`, `MiscellaneousInfo`, `InputVoltageRangeMin`, `InputVoltageRangeMax`, `AOCIfRangeMin`, `AOCIfRangeMax`, `TypeCCurrent`, `TypeCVoltage`, `FixedOutput`, `Compatibility`, `ElectricalProtectionClass`, `DriverMounting`, `IP`, `TaC`, `CLO`, `VfRangeMin`, `VfRangeMax`, `SELVHV`, `ExtNTC`, `InrushCurrent`, `InrushTWidth`, `Surge`, `PowerFactor`, `LeakageCurrent`, `THDPercentage`, `PstLM`, `SVM`, `MaxOperatingTemp`)
+VALUES
+(3, 3, 'DR001', 'High-performance driver for Ellipse B360', 'Supplier1', 'DALI', 5, 700, 24, 'Manual', 'Advanced driver', 100, 240, 100, 700, 700, 24, 'Yes', 'DALI1, DALI2, SwitchDim, Casambi', 'Class II', 'Surface', 'IP67', 85, 'Yes', 2.8, 3.2, 'SELV', 'Yes', 10, 100, 2000, 0.95, 0.5, 10, 1.0, 0.9, 85),
+(4, 4, 'DR001', 'High-performance driver for Ellipse W360', 'Supplier1', 'DALI', 5, 700, 24, 'Manual', 'Advanced driver', 100, 240, 100, 700, 700, 24, 'Yes', 'DALI1, DALI2, SwitchDim, Casambi', 'Class II', 'Surface', 'IP67', 85, 'Yes', 2.8, 3.2, 'SELV', 'Yes', 10, 100, 2000, 0.95, 0.5, 10, 1.0, 0.9, 85)
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`VersaluxDriverCode` = VALUES(`VersaluxDriverCode`),
+`Description` = VALUES(`Description`),
+`DriverSupplier` = VALUES(`DriverSupplier`),
+`Control` = VALUES(`Control`),
+`WattsLoss` = VALUES(`WattsLoss`),
+`ForwardCurrentRating` = VALUES(`ForwardCurrentRating`),
+`ForwardVoltageRating` = VALUES(`ForwardVoltageRating`),
+`DriverSetting` = VALUES(`DriverSetting`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`InputVoltageRangeMin` = VALUES(`InputVoltageRangeMin`),
+`InputVoltageRangeMax` = VALUES(`InputVoltageRangeMax`),
+`AOCIfRangeMin` = VALUES(`AOCIfRangeMin`),
+`AOCIfRangeMax` = VALUES(`AOCIfRangeMax`),
+`TypeCCurrent` = VALUES(`TypeCCurrent`),
+`TypeCVoltage` = VALUES(`TypeCVoltage`),
+`FixedOutput` = VALUES(`FixedOutput`),
+`Compatibility` = VALUES(`Compatibility`),
+`ElectricalProtectionClass` = VALUES(`ElectricalProtectionClass`),
+`DriverMounting` = VALUES(`DriverMounting`),
+`IP` = VALUES(`IP`),
+`TaC` = VALUES(`TaC`),
+`CLO` = VALUES(`CLO`),
+`VfRangeMin` = VALUES(`VfRangeMin`),
+`VfRangeMax` = VALUES(`VfRangeMax`),
+`SELVHV` = VALUES(`SELVHV`),
+`ExtNTC` = VALUES(`ExtNTC`),
+`InrushCurrent` = VALUES(`InrushCurrent`),
+`InrushTWidth` = VALUES(`InrushTWidth`),
+`Surge` = VALUES(`Surge`),
+`PowerFactor` = VALUES(`PowerFactor`),
+`LeakageCurrent` = VALUES(`LeakageCurrent`),
+`THDPercentage` = VALUES(`THDPercentage`),
+`PstLM` = VALUES(`PstLM`),
+`SVM` = VALUES(`SVM`),
+`MaxOperatingTemp` = VALUES(`MaxOperatingTemp`);
+
+
+-- Insert into CertificateApprovals table with overwrite
+INSERT INTO `CertificateApprovals` (`CertificateID`, `ProductID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(3, 3, 'sym-f-mark.png', 'Yes', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 1', 'IK08', 'IP65', 'General certificate for Ellipse B360', 40, -10, 'Yes', 'Rating A', 'Rating B', '2 years'),
+(4, 4, 'sym-f-mark.png', 'Yes', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 1', 'IK08', 'IP65', 'General certificate for Ellipse W360', 40, -10, 'Yes', 'Rating A', 'Rating B', '2 years')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`Approvals` = VALUES(`Approvals`),
+`ATEX` = VALUES(`ATEX`),
+`B0FireResistance` = VALUES(`B0FireResistance`),
+`B15FireResistance` = VALUES(`B15FireResistance`),
+`Battery` = VALUES(`Battery`),
+`CeilingCoveringRating` = VALUES(`CeilingCoveringRating`),
+`DriveOverRating` = VALUES(`DriveOverRating`),
+`EmergencyRating` = VALUES(`EmergencyRating`),
+`HazardousRating` = VALUES(`HazardousRating`),
+`IKRating` = VALUES(`IKRating`),
+`IPRating` = VALUES(`IPRating`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`OperatingTempMax` = VALUES(`OperatingTempMax`),
+`OperatingTempMin` = VALUES(`OperatingTempMin`),
+`RCM` = VALUES(`RCM`),
+`SeismicRating` = VALUES(`SeismicRating`),
+`WalkOverRating` = VALUES(`WalkOverRating`),
+`Warranty` = VALUES(`Warranty`);
+
+-- Insert into IESFiles table with overwrite
+INSERT INTO `IESFiles` (`IESFileID`, `ProductID`, `IESFile`, `IESFileDescription`, `IESFileName`)
+VALUES
+(3, 3, NULL, 'Standard IES file for Ellipse B360', 'EllipseB360.ies'),
+(4, 4, NULL, 'Standard IES file for Ellipse W360', 'EllipseW360.ies')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`IESFile` = VALUES(`IESFile`),
+`IESFileDescription` = VALUES(`IESFileDescription`),
+`IESFileName` = VALUES(`IESFileName`);
+
+-- Insert into OpticalSpecifications table with overwrite
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `ProductID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(3, 3, '120°', 'Wide', 'B2-U0-G1', 'ellipse-cartesian.png', 'Category1', 'ellipse-conelux.png', 'General optical specs for Ellipse B360', 'UGR1', 1600, 1500, 100, '30', 1700, 1600, 'Class I', 3, 50000, 40000, 30000, 'ellipse-lcs.png', 'L1', '50x50x50 mm', 2000, 45, 55, 'UGR19', 'Type A', 'ellipse-polar.png', '1.1, 1.2, 1.3', 100, 90, 0.1),
+(4, 4, '120°', 'Wide', 'B2-U0-G1', 'ellipse-cartesian.png', 'Category1', 'ellipse-conelux.png', 'General optical specs for Ellipse W360', 'UGR1', 1600, 1500, 100, '30', 1700, 1600, 'Class I', 4, 50000, 40000, 30000, 'ellipse-lcs.png', 'L1', '50x50x50 mm', 2000, 45, 55, 'UGR19', 'Type A', 'ellipse-polar.png', '1.1, 1.2, 1.3', 100, 90, 0.1)
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`BeamAngles` = VALUES(`BeamAngles`),
+`BeamSpread` = VALUES(`BeamSpread`),
+`BUGRating` = VALUES(`BUGRating`),
+`CartesianGraph` = VALUES(`CartesianGraph`),
+`Category` = VALUES(`Category`),
+`ConeLuxDiagram` = VALUES(`ConeLuxDiagram`),
+`Description` = VALUES(`Description`),
+`DLCMaxUGR` = VALUES(`DLCMaxUGR`),
+`DownwardOutputAdvertised` = VALUES(`DownwardOutputAdvertised`),
+`DownwardOutputReal` = VALUES(`DownwardOutputReal`),
+`Efficacy` = VALUES(`Efficacy`),
+`FieldAngles` = VALUES(`FieldAngles`),
+`FixtureOutputAdvertised` = VALUES(`FixtureOutputAdvertised`),
+`FixtureOutputReal` = VALUES(`FixtureOutputReal`),
+`IESClassification` = VALUES(`IESClassification`),
+`IESFileTableID` = VALUES(`IESFileTableID`),
+`L70` = VALUES(`L70`),
+`L80` = VALUES(`L80`),
+`L90` = VALUES(`L90`),
+`LCSGraph` = VALUES(`LCSGraph`),
+`LongitudinalClassification` = VALUES(`LongitudinalClassification`),
+`LuminousDimensions` = VALUES(`LuminousDimensions`),
+`MaxIntensity` = VALUES(`MaxIntensity`),
+`MaxIntensityAngleH` = VALUES(`MaxIntensityAngleH`),
+`MaxIntensityAngleV` = VALUES(`MaxIntensityAngleV`),
+`MaxUGR` = VALUES(`MaxUGR`),
+`NEMAType` = VALUES(`NEMAType`),
+`PolarCurve` = VALUES(`PolarCurve`),
+`SpacingCriteria` = VALUES(`SpacingCriteria`),
+`UpwardOutputAdvertised` = VALUES(`UpwardOutputAdvertised`),
+`UpwardOutputReal` = VALUES(`UpwardOutputReal`),
+`UWLR` = VALUES(`UWLR`);
+
+-- Insert into Accessories table with overwrite
+INSERT INTO `Accessories` (`AccessoryID`, `ProductID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`)
+VALUES
+(3, 3, 'ACC003', 'Metal', 'Mounting Bracket for Ellipse B360', 'ellipse-bracket-diagram.png', 'ellipse-bracket-hero.jpg', 'Bracket for easy mounting', 'ellipse-bracket-symbol.png', 'Use with Ellipse B360 models'),
+(4, 4, 'ACC004', 'Plastic', 'Light Diffuser for Ellipse W360', 'ellipse-diffuser-diagram.png', 'ellipse-diffuser-hero.jpg', 'Diffuser for soft lighting', 'ellipse-diffuser-symbol.png', 'Compatible with Ellipse W360 models')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`AccessoryCode` = VALUES(`AccessoryCode`),
+`AccessoryConstruction` = VALUES(`AccessoryConstruction`),
+`AccessoryDescription` = VALUES(`AccessoryDescription`),
+`AccessoryDimensionalDiagram` = VALUES(`AccessoryDimensionalDiagram`),
+`AccessoryHeroImage` = VALUES(`AccessoryHeroImage`),
+`AccessoryShortDescription` = VALUES(`AccessoryShortDescription`),
+`AccessorySymbol` = VALUES(`AccessorySymbol`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`);
