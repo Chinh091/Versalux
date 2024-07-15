@@ -1,0 +1,260 @@
+USE `defaultdb`;
+
+-- Insert into Families table with overwrite
+INSERT INTO `Families` (`FamilyID`, `FamilyDescription`, `FamilyName`, `FamilyShortDescription`)
+VALUES
+(7, 'Heavy duty luminaire for harsh and corrosive environments. Marine grade 316 stainless steel, deep drawn housing, finished in white powder-coat. Heavy duty trunnion arm mount in 6mm 316 stainless steel. Anodised aluminium flood-beam reflector, protected by clear borosilicate glass lens, gasketed with EDPM silicone rubber to IP67. Connection via externally mounted ABS junction box with brass cable gland. 240V special halogen in standard or high output versions.', 'DUKE', 'DUKE')
+ON DUPLICATE KEY UPDATE
+`FamilyDescription` = VALUES(`FamilyDescription`),
+`FamilyName` = VALUES(`FamilyName`),
+`FamilyShortDescription` = VALUES(`FamilyShortDescription`);
+
+-- Insert into SubFamilies table with overwrite
+INSERT INTO `SubFamilies` (`SubFamilyID`, `SubFamilyDescription`, `SubFamilyName`, `SubFamilyShortDescription`)
+VALUES
+(7, 'Mining & Marine', 'Mining & Marine', 'Mining & Marine')
+ON DUPLICATE KEY UPDATE
+`SubFamilyDescription` = VALUES(`SubFamilyDescription`),
+`SubFamilyName` = VALUES(`SubFamilyName`),
+`SubFamilyShortDescription` = VALUES(`SubFamilyShortDescription`);
+
+-- Insert into ProductGroups table with overwrite
+INSERT INTO `ProductGroups` (`ProductGroupID`, `Collection`, `ProductCategory`, `ProductSubCategory`)
+VALUES
+(7, NULL, 'Floodlights', NULL)
+ON DUPLICATE KEY UPDATE
+`Collection` = VALUES(`Collection`),
+`ProductCategory` = VALUES(`ProductCategory`),
+`ProductSubCategory` = VALUES(`ProductSubCategory`);
+
+-- Insert into Products table with overwrite
+INSERT INTO `Products` (`ProductID`, `FamilyID`, `HeroImage`, `ProductCode`, `ProductGroupID`, `SubFamilyID`, `SupplierID`)
+VALUES
+(10, 7, NULL, 'GLA-DUKEQIRX71000N', 7, 7, 1),
+(11, 7, NULL, 'GLA-DUKEQIRX71000W', 7, 7, 1)
+ON DUPLICATE KEY UPDATE
+`FamilyID` = VALUES(`FamilyID`),
+`HeroImage` = VALUES(`HeroImage`),
+`ProductCode` = VALUES(`ProductCode`),
+`ProductGroupID` = VALUES(`ProductGroupID`),
+`SubFamilyID` = VALUES(`SubFamilyID`),
+`SupplierID` = VALUES(`SupplierID`);
+
+-- Insert into PhysicalConstructions table with overwrite
+INSERT INTO `PhysicalConstructions` (`PhysicalID`, `ProductID`, `HousingMaterial`, `OpticMaterial`, `Weight`, `MiscellaneousInfo`, `FinishColor`, `FinishType`, `MountingType`, `Dimensions`, `CutOutSize`, `DimensionDiagram`, `FinishIcon`)
+VALUES
+(10, 10, 'Marine grade 316 stainless steel', 'Clear borosilicate glass', 5.0, 'Deep drawn 316 stainless-steel floodlight. Special lamp & lampholders. High output halogen lamps.', 'White', 'Powder-coat', 'Trunnion arm', '400x300x250 mm', NULL, NULL, 'sym-ip67.png'),
+(11, 11, 'Marine grade 316 stainless steel', 'Clear borosilicate glass', 5.0, 'Deep drawn 316 stainless-steel floodlight. Special lamp & lampholders. High output halogen lamps.', 'White', 'Powder-coat', 'Trunnion arm', '400x300x250 mm', NULL, NULL, 'sym-ip67.png')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`HousingMaterial` = VALUES(`HousingMaterial`),
+`OpticMaterial` = VALUES(`OpticMaterial`),
+`Weight` = VALUES(`Weight`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`FinishColor` = VALUES(`FinishColor`),
+`FinishType` = VALUES(`FinishType`),
+`MountingType` = VALUES(`MountingType`),
+`Dimensions` = VALUES(`Dimensions`),
+`CutOutSize` = VALUES(`CutOutSize`),
+`DimensionDiagram` = VALUES(`DimensionDiagram`),
+`FinishIcon` = VALUES(`FinishIcon`);
+
+-- Insert into ElectricalSpecifications table with overwrite
+INSERT INTO `ElectricalSpecifications` (`ElectricalID`, `AdvertisedWatts`, `ConnectionDescription`, `Current`, `Cycles`, `ElectricalClass`, `LCP`, `MiscellaneousInfo`, `PowerFactor`, `ProductID`, `RatedVoltage`, `TaMax`, `TaMin`)
+VALUES
+(10, 1000, 'Connection via externally mounted ABS junction box with brass cable gland', 4.2, '50Hz', 'Class I', 'LCP10', 'General specs for DUKE series', 0.98, 10, 240, 40, -20),
+(11, 1000, 'Connection via externally mounted ABS junction box with brass cable gland', 4.2, '50Hz', 'Class I', 'LCP11', 'General specs for DUKE series', 0.98, 11, 240, 40, -20)
+ON DUPLICATE KEY UPDATE
+`AdvertisedWatts` = VALUES(`AdvertisedWatts`),
+`ConnectionDescription` = VALUES(`ConnectionDescription`),
+`Current` = VALUES(`Current`),
+`Cycles` = VALUES(`Cycles`),
+`ElectricalClass` = VALUES(`ElectricalClass`),
+`LCP` = VALUES(`LCP`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`PowerFactor` = VALUES(`PowerFactor`),
+`ProductID` = VALUES(`ProductID`),
+`RatedVoltage` = VALUES(`RatedVoltage`),
+`TaMax` = VALUES(`TaMax`),
+`TaMin` = VALUES(`TaMin`);
+
+-- Insert into LEDCharacteristics table with overwrite
+INSERT INTO `LEDCharacteristics` (`LEDID`, `ProductID`, `CCT`, `CRI`, `ChipSeries`, `MiscellaneousInfo`, `PrimaryChipSupplier`, `SecondaryChipSupplier`, `ChipCode`, `ChipVoltageRange`, `ChipForwardVoltageRating`, `ChipForwardCurrentRating`, `ArrayForwardVoltageRating`, `ArrayForwardCurrentRating`, `ArrayOutput`, `ArrayZhagaType`, `R9Value`, `DUV`, `WhitePointX`, `WhitePointY`, `PeakWaveLength`, `MOverPRatio`, `SPRatio`, `TM30Report`, `FidelityIndex`, `GamutIndex`, `LocalChromaShift`, `LocalHueShift`, `LocalColorFidelity`, `PLevel`, `VLevel`, `FLevel`, `LocalAverages`, `SDCMOverLife`, `SDCMInitial`, `RatedLife`, `InSituTempOfLEDChip`, `LEDModuleVf`, `LumenPercentage50000Hrs`)
+VALUES
+(10, 10, 'Halogen', NULL, 'Series4', 'Halogen R7s special lamp', 'Supplier4', 'Supplier5', 'Chip4', '230V', '240V', '4.2A', '240V', '4.2A', '1000 lm', 'Zhaga Type 4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(11, 11, 'Halogen', NULL, 'Series4', 'Halogen R7s special lamp', 'Supplier4', 'Supplier5', 'Chip4', '230V', '240V', '4.2A', '240V', '4.2A', '1000 lm', 'Zhaga Type 4', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`CCT` = VALUES(`CCT`),
+`CRI` = VALUES(`CRI`),
+`ChipSeries` = VALUES(`ChipSeries`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`PrimaryChipSupplier` = VALUES(`PrimaryChipSupplier`),
+`SecondaryChipSupplier` = VALUES(`SecondaryChipSupplier`),
+`ChipCode` = VALUES(`ChipCode`),
+`ChipVoltageRange` = VALUES(`ChipVoltageRange`),
+`ChipForwardVoltageRating` = VALUES(`ChipForwardVoltageRating`),
+`ChipForwardCurrentRating` = VALUES(`ChipForwardCurrentRating`),
+`ArrayForwardVoltageRating` = VALUES(`ArrayForwardVoltageRating`),
+`ArrayForwardCurrentRating` = VALUES(`ArrayForwardCurrentRating`),
+`ArrayOutput` = VALUES(`ArrayOutput`),
+`ArrayZhagaType` = VALUES(`ArrayZhagaType`),
+`R9Value` = VALUES(`R9Value`),
+`DUV` = VALUES(`DUV`),
+`WhitePointX` = VALUES(`WhitePointX`),
+`WhitePointY` = VALUES(`WhitePointY`),
+`PeakWaveLength` = VALUES(`PeakWaveLength`),
+`MOverPRatio` = VALUES(`MOverPRatio`),
+`SPRatio` = VALUES(`SPRatio`),
+`TM30Report` = VALUES(`TM30Report`),
+`FidelityIndex` = VALUES(`FidelityIndex`),
+`GamutIndex` = VALUES(`GamutIndex`),
+`LocalChromaShift` = VALUES(`LocalChromaShift`),
+`LocalHueShift` = VALUES(`LocalHueShift`),
+`LocalColorFidelity` = VALUES(`LocalColorFidelity`),
+`PLevel` = VALUES(`PLevel`),
+`VLevel` = VALUES(`VLevel`),
+`FLevel` = VALUES(`FLevel`),
+`LocalAverages` = VALUES(`LocalAverages`),
+`SDCMOverLife` = VALUES(`SDCMOverLife`),
+`SDCMInitial` = VALUES(`SDCMInitial`),
+`RatedLife` = VALUES(`RatedLife`),
+`InSituTempOfLEDChip` = VALUES(`InSituTempOfLEDChip`),
+`LEDModuleVf` = VALUES(`LEDModuleVf`),
+`LumenPercentage50000Hrs` = VALUES(`LumenPercentage50000Hrs`);
+
+-- Insert into DriverSpecifications table with overwrite
+INSERT INTO `DriverSpecifications` (`DriverID`, `ProductID`, `VersaluxDriverCode`, `Description`, `DriverSupplier`, `Control`, `WattsLoss`, `ForwardCurrentRating`, `ForwardVoltageRating`, `DriverSetting`, `MiscellaneousInfo`, `InputVoltageRangeMin`, `InputVoltageRangeMax`, `AOCIfRangeMin`, `AOCIfRangeMax`, `TypeCCurrent`, `TypeCVoltage`, `FixedOutput`, `Compatibility`, `ElectricalProtectionClass`, `DriverMounting`, `IP`, `TaC`, `CLO`, `VfRangeMin`, `VfRangeMax`, `SELVHV`, `ExtNTC`, `InrushCurrent`, `InrushTWidth`, `Surge`, `PowerFactor`, `LeakageCurrent`, `THDPercentage`, `PstLM`, `SVM`, `MaxOperatingTemp`)
+VALUES
+(10, 10, 'DR004', 'Standard driver for DUKE series', 'Supplier4', 'On/Off', 8, 4.2, 240, 'Manual', 'Standard driver for DUKE series', 110, 260, 110, 600, 600, 240, 'Yes', 'On/Off', 'Class I', 'Trunnion arm', 'IP67', 40, 'No', '2.8V', '3.1V', 'HV', 'No', 12, 80, '2.5kV', 0.90, 0.3, 12, 1.2, 0.8, 90),
+(11, 11, 'DR005', 'Standard driver for DUKE series', 'Supplier4', 'On/Off', 8, 4.2, 240, 'Manual', 'Standard driver for DUKE series', 110, 260, 110, 600, 600, 240, 'Yes', 'On/Off', 'Class I', 'Trunnion arm', 'IP67', 40, 'No', '2.8V', '3.1V', 'HV', 'No', 12, 80, '2.5kV', 0.90, 0.3, 12, 1.2, 0.8, 90)
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`VersaluxDriverCode` = VALUES(`VersaluxDriverCode`),
+`Description` = VALUES(`Description`),
+`DriverSupplier` = VALUES(`DriverSupplier`),
+`Control` = VALUES(`Control`),
+`WattsLoss` = VALUES(`WattsLoss`),
+`ForwardCurrentRating` = VALUES(`ForwardCurrentRating`),
+`ForwardVoltageRating` = VALUES(`ForwardVoltageRating`),
+`DriverSetting` = VALUES(`DriverSetting`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`InputVoltageRangeMin` = VALUES(`InputVoltageRangeMin`),
+`InputVoltageRangeMax` = VALUES(`InputVoltageRangeMax`),
+`AOCIfRangeMin` = VALUES(`AOCIfRangeMin`),
+`AOCIfRangeMax` = VALUES(`AOCIfRangeMax`),
+`TypeCCurrent` = VALUES(`TypeCCurrent`),
+`TypeCVoltage` = VALUES(`TypeCVoltage`),
+`FixedOutput` = VALUES(`FixedOutput`),
+`Compatibility` = VALUES(`Compatibility`),
+`ElectricalProtectionClass` = VALUES(`ElectricalProtectionClass`),
+`DriverMounting` = VALUES(`DriverMounting`),
+`IP` = VALUES(`IP`),
+`TaC` = VALUES(`TaC`),
+`CLO` = VALUES(`CLO`),
+`VfRangeMin` = VALUES(`VfRangeMin`),
+`VfRangeMax` = VALUES(`VfRangeMax`),
+`SELVHV` = VALUES(`SELVHV`),
+`ExtNTC` = VALUES(`ExtNTC`),
+`InrushCurrent` = VALUES(`InrushCurrent`),
+`InrushTWidth` = VALUES(`InrushTWidth`),
+`Surge` = VALUES(`Surge`),
+`PowerFactor` = VALUES(`PowerFactor`),
+`LeakageCurrent` = VALUES(`LeakageCurrent`),
+`THDPercentage` = VALUES(`THDPercentage`),
+`PstLM` = VALUES(`PstLM`),
+`SVM` = VALUES(`SVM`),
+`MaxOperatingTemp` = VALUES(`MaxOperatingTemp`);
+
+-- Insert into CertificateApprovals table with overwrite
+INSERT INTO `CertificateApprovals` (`CertificateID`, `ProductID`, `Approvals`, `ATEX`, `B0FireResistance`, `B15FireResistance`, `Battery`, `CeilingCoveringRating`, `DriveOverRating`, `EmergencyRating`, `HazardousRating`, `IKRating`, `IPRating`, `MiscellaneousInfo`, `OperatingTempMax`, `OperatingTempMin`, `RCM`, `SeismicRating`, `WalkOverRating`, `Warranty`)
+VALUES
+(10, 10, 'sym-ip67.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP67', 'General certificate for DUKE series', 50, -20, 'Yes', 'Rating B', 'Rating A', '5 years'),
+(11, 11, 'sym-ip67.png', 'No', 'No', 'No', 'No', 'A', 'B', 'No', 'Zone 2', 'IK09', 'IP67', 'General certificate for DUKE series', 50, -20, 'Yes', 'Rating B', 'Rating A', '5 years')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`Approvals` = VALUES(`Approvals`),
+`ATEX` = VALUES(`ATEX`),
+`B0FireResistance` = VALUES(`B0FireResistance`),
+`B15FireResistance` = VALUES(`B15FireResistance`),
+`Battery` = VALUES(`Battery`),
+`CeilingCoveringRating` = VALUES(`CeilingCoveringRating`),
+`DriveOverRating` = VALUES(`DriveOverRating`),
+`EmergencyRating` = VALUES(`EmergencyRating`),
+`HazardousRating` = VALUES(`HazardousRating`),
+`IKRating` = VALUES(`IKRating`),
+`IPRating` = VALUES(`IPRating`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`),
+`OperatingTempMax` = VALUES(`OperatingTempMax`),
+`OperatingTempMin` = VALUES(`OperatingTempMin`),
+`RCM` = VALUES(`RCM`),
+`SeismicRating` = VALUES(`SeismicRating`),
+`WalkOverRating` = VALUES(`WalkOverRating`),
+`Warranty` = VALUES(`Warranty`);
+
+-- Insert into IESFiles table with overwrite
+INSERT INTO `IESFiles` (`IESFileID`, `ProductID`, `IESFile`, `IESFileDescription`, `IESFileName`)
+VALUES
+(10, 10, NULL, 'Standard IES file for DUKE series', 'DUKE-Narrow.ies'),
+(11, 11, NULL, 'Standard IES file for DUKE series', 'DUKE-Wide.ies')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`IESFile` = VALUES(`IESFile`),
+`IESFileDescription` = VALUES(`IESFileDescription`),
+`IESFileName` = VALUES(`IESFileName`);
+
+-- Insert into OpticalSpecifications table with overwrite
+INSERT INTO `OpticalSpecifications` (`OpticalID`, `ProductID`, `BeamAngles`, `BeamSpread`, `BUGRating`, `CartesianGraph`, `Category`, `ConeLuxDiagram`, `Description`, `DLCMaxUGR`, `DownwardOutputAdvertised`, `DownwardOutputReal`, `Efficacy`, `FieldAngles`, `FixtureOutputAdvertised`, `FixtureOutputReal`, `IESClassification`, `IESFileTableID`, `L70`, `L80`, `L90`, `LCSGraph`, `LongitudinalClassification`, `LuminousDimensions`, `MaxIntensity`, `MaxIntensityAngleH`, `MaxIntensityAngleV`, `MaxUGR`, `NEMAType`, `PolarCurve`, `SpacingCriteria`, `UpwardOutputAdvertised`, `UpwardOutputReal`, `UWLR`)
+VALUES
+(10, 10, '15°', 'Narrow', 'B2-U0-G1', 'DUKE-cartesian-narrow.png', 'Category4', 'DUKE-conelux-narrow.png', 'General optical specs for DUKE series', 'UGR4', 600, 550, 100, '30', 650, 600, 'Class III', 10, 52000, 42000, 32000, 'DUKE-lcs-narrow.png', 'L4', '60x60x60 mm', 700, 30, 60, 'UGR19', 'Type D', 'DUKE-polar-narrow.png', '1.2, 1.3, 1.4', 100, 90, 0.2),
+(11, 11, '30°', 'Wide', 'B2-U0-G1', 'DUKE-cartesian-wide.png', 'Category4', 'DUKE-conelux-wide.png', 'General optical specs for DUKE series', 'UGR4', 600, 550, 100, '30', 650, 600, 'Class III', 11, 52000, 42000, 32000, 'DUKE-lcs-wide.png', 'L4', '60x60x60 mm', 700, 30, 60, 'UGR19', 'Type D', 'DUKE-polar-wide.png', '1.2, 1.3, 1.4', 100, 90, 0.2)
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`BeamAngles` = VALUES(`BeamAngles`),
+`BeamSpread` = VALUES(`BeamSpread`),
+`BUGRating` = VALUES(`BUGRating`),
+`CartesianGraph` = VALUES(`CartesianGraph`),
+`Category` = VALUES(`Category`),
+`ConeLuxDiagram` = VALUES(`ConeLuxDiagram`),
+`Description` = VALUES(`Description`),
+`DLCMaxUGR` = VALUES(`DLCMaxUGR`),
+`DownwardOutputAdvertised` = VALUES(`DownwardOutputAdvertised`),
+`DownwardOutputReal` = VALUES(`DownwardOutputReal`),
+`Efficacy` = VALUES(`Efficacy`),
+`FieldAngles` = VALUES(`FieldAngles`),
+`FixtureOutputAdvertised` = VALUES(`FixtureOutputAdvertised`),
+`FixtureOutputReal` = VALUES(`FixtureOutputReal`),
+`IESClassification` = VALUES(`IESClassification`),
+`IESFileTableID` = VALUES(`IESFileTableID`),
+`L70` = VALUES(`L70`),
+`L80` = VALUES(`L80`),
+`L90` = VALUES(`L90`),
+`LCSGraph` = VALUES(`LCSGraph`),
+`LongitudinalClassification` = VALUES(`LongitudinalClassification`),
+`LuminousDimensions` = VALUES(`LuminousDimensions`),
+`MaxIntensity` = VALUES(`MaxIntensity`),
+`MaxIntensityAngleH` = VALUES(`MaxIntensityAngleH`),
+`MaxIntensityAngleV` = VALUES(`MaxIntensityAngleV`),
+`MaxUGR` = VALUES(`MaxUGR`),
+`NEMAType` = VALUES(`NEMAType`),
+`PolarCurve` = VALUES(`PolarCurve`),
+`SpacingCriteria` = VALUES(`SpacingCriteria`),
+`UpwardOutputAdvertised` = VALUES(`UpwardOutputAdvertised`),
+`UpwardOutputReal` = VALUES(`UpwardOutputReal`),
+`UWLR` = VALUES(`UWLR`);
+
+-- Insert into Accessories table with overwrite
+INSERT INTO `Accessories` (`AccessoryID`, `ProductID`, `AccessoryCode`, `AccessoryConstruction`, `AccessoryDescription`, `AccessoryDimensionalDiagram`, `AccessoryHeroImage`, `AccessoryShortDescription`, `AccessorySymbol`, `MiscellaneousInfo`)
+VALUES
+(10, 10, 'ACC010', 'Metal', 'Mounting Bracket for DUKE series', 'DUKE-bracket-diagram.png', 'DUKE-bracket-hero.jpg', 'Bracket for easy mounting', 'DUKE-bracket-symbol.png', 'Use with DUKE series models'),
+(11, 11, 'ACC011', 'Metal', 'Mounting Bracket for DUKE series', 'DUKE-bracket-diagram.png', 'DUKE-bracket-hero.jpg', 'Bracket for easy mounting', 'DUKE-bracket-symbol.png', 'Use with DUKE series models')
+ON DUPLICATE KEY UPDATE
+`ProductID` = VALUES(`ProductID`),
+`AccessoryCode` = VALUES(`AccessoryCode`),
+`AccessoryConstruction` = VALUES(`AccessoryConstruction`),
+`AccessoryDescription` = VALUES(`AccessoryDescription`),
+`AccessoryDimensionalDiagram` = VALUES(`AccessoryDimensionalDiagram`),
+`AccessoryHeroImage` = VALUES(`AccessoryHeroImage`),
+`AccessoryShortDescription` = VALUES(`AccessoryShortDescription`),
+`AccessorySymbol` = VALUES(`AccessorySymbol`),
+`MiscellaneousInfo` = VALUES(`MiscellaneousInfo`);
