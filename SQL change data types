@@ -1,10 +1,11 @@
-USE `defaultdb`;
+USE `testdb`;
 
 -- Alter the LEDCharacteristics table
 ALTER TABLE `LEDCharacteristics` MODIFY `CRI` VARCHAR(10);
 ALTER TABLE `LEDCharacteristics` MODIFY `ChipVoltageRange` VARCHAR(20);
 ALTER TABLE `LEDCharacteristics` MODIFY `ChipForwardVoltageRating` VARCHAR(10);
 ALTER TABLE `LEDCharacteristics` MODIFY `ArrayForwardVoltageRating` VARCHAR(10);
+ALTER TABLE `LEDCharacteristics` MODIFY `ChipForwardCurrentRating` VARCHAR(10);
 
 -- Alter the DriverSpecifications table
 ALTER TABLE `DriverSpecifications` MODIFY `VersaluxDriverCode` VARCHAR(10);
