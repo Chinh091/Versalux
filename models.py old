@@ -1,0 +1,304 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
+from django.db import models
+
+
+class Accessories(models.Model):
+    accessoryid = models.AutoField(db_column='AccessoryID', primary_key=True)  # Field name made lowercase.
+    accessorycode = models.CharField(db_column='AccessoryCode', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    accessoryconstruction = models.CharField(db_column='AccessoryConstruction', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    accessorydescription = models.TextField(db_column='AccessoryDescription', blank=True, null=True)  # Field name made lowercase.
+    accessorydimensionaldiagram = models.TextField(db_column='AccessoryDimensionalDiagram', blank=True, null=True)  # Field name made lowercase.
+    accessoryheroimage = models.TextField(db_column='AccessoryHeroImage', blank=True, null=True)  # Field name made lowercase.
+    accessoryshortdescription = models.TextField(db_column='AccessoryShortDescription', blank=True, null=True)  # Field name made lowercase.
+    accessorysymbol = models.TextField(db_column='AccessorySymbol', blank=True, null=True)  # Field name made lowercase.
+    miscellaneousinfo = models.TextField(db_column='MiscellaneousInfo', blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Accessories'
+
+
+class Certificateapprovals(models.Model):
+    certificateid = models.AutoField(db_column='CertificateID', primary_key=True)  # Field name made lowercase.
+    approvals = models.TextField(db_column='Approvals', blank=True, null=True)  # Field name made lowercase.
+    atex = models.CharField(db_column='ATEX', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    b0fireresistance = models.CharField(db_column='B0FireResistance', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    b15fireresistance = models.CharField(db_column='B15FireResistance', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    battery = models.CharField(db_column='Battery', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    ceilingcoveringrating = models.CharField(db_column='CeilingCoveringRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    driveoverrating = models.CharField(db_column='DriveOverRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    emergencyrating = models.CharField(db_column='EmergencyRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    hazardousrating = models.CharField(db_column='HazardousRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    ikrating = models.CharField(db_column='IKRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    iprating = models.CharField(db_column='IPRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    miscellaneousinfo = models.TextField(db_column='MiscellaneousInfo', blank=True, null=True)  # Field name made lowercase.
+    operatingtempmax = models.DecimalField(db_column='OperatingTempMax', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    operatingtempmin = models.DecimalField(db_column='OperatingTempMin', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    rcm = models.CharField(db_column='RCM', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    seismicrating = models.CharField(db_column='SeismicRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    walkoverrating = models.CharField(db_column='WalkOverRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    warranty = models.CharField(db_column='Warranty', max_length=255, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'CertificateApprovals'
+
+
+class Driverspecifications(models.Model):
+    driverid = models.AutoField(db_column='DriverID', primary_key=True)  # Field name made lowercase.
+    aocifrangemax = models.DecimalField(db_column='AOCIfRangeMax', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    aocifrangemin = models.DecimalField(db_column='AOCIfRangeMin', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    clo = models.CharField(db_column='CLO', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    compatibility = models.CharField(db_column='Compatibility', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    control = models.CharField(db_column='Control', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    description = models.TextField(db_column='Description', blank=True, null=True)  # Field name made lowercase.
+    drivermounting = models.CharField(db_column='DriverMounting', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    driversetting = models.CharField(db_column='DriverSetting', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    driversupplier = models.CharField(db_column='DriverSupplier', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    electricalprotectionclass = models.CharField(db_column='ElectricalProtectionClass', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    extntc = models.CharField(db_column='ExtNTC', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    fixedoutput = models.CharField(db_column='FixedOutput', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    forwardcurrentrating = models.CharField(db_column='ForwardCurrentRating', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    forwardvoltagerating = models.DecimalField(db_column='ForwardVoltageRating', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    inputvoltagerangemax = models.DecimalField(db_column='InputVoltageRangeMax', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    inputvoltagerangemin = models.DecimalField(db_column='InputVoltageRangeMin', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    inrushcurrent = models.DecimalField(db_column='InrushCurrent', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    inrushtwidth = models.DecimalField(db_column='InrushTWidth', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    ip = models.CharField(db_column='IP', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    leakagecurrent = models.DecimalField(db_column='LeakageCurrent', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    maxoperatingtemp = models.DecimalField(db_column='MaxOperatingTemp', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    miscellaneousinfo = models.TextField(db_column='MiscellaneousInfo', blank=True, null=True)  # Field name made lowercase.
+    powerfactor = models.DecimalField(db_column='PowerFactor', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    pstlm = models.CharField(db_column='PstLM', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    selvhv = models.CharField(db_column='SELVHV', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    surge = models.CharField(db_column='Surge', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    svm = models.CharField(db_column='SVM', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    tac = models.DecimalField(db_column='TaC', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    thdpercentage = models.DecimalField(db_column='THDPercentage', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    typeccurrent = models.DecimalField(db_column='TypeCCurrent', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    typecvoltage = models.DecimalField(db_column='TypeCVoltage', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    versaluxdrivercode = models.CharField(db_column='VersaluxDriverCode', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    vfrangemax = models.CharField(db_column='VfRangeMax', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    vfrangemin = models.CharField(db_column='VfRangeMin', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    wattsloss = models.DecimalField(db_column='WattsLoss', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'DriverSpecifications'
+
+
+class Electricalspecifications(models.Model):
+    electricalid = models.AutoField(db_column='ElectricalID', primary_key=True)  # Field name made lowercase.
+    advertisedwatts = models.DecimalField(db_column='AdvertisedWatts', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    connectiondescription = models.TextField(db_column='ConnectionDescription', blank=True, null=True)  # Field name made lowercase.
+    current = models.DecimalField(db_column='Current', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    cycles = models.CharField(db_column='Cycles', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    electricalclass = models.CharField(db_column='ElectricalClass', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    lcp = models.CharField(db_column='LCP', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    miscellaneousinfo = models.TextField(db_column='MiscellaneousInfo', blank=True, null=True)  # Field name made lowercase.
+    powerfactor = models.DecimalField(db_column='PowerFactor', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    ratedvoltage = models.DecimalField(db_column='RatedVoltage', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    tamax = models.DecimalField(db_column='TaMax', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    tamin = models.DecimalField(db_column='TaMin', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'ElectricalSpecifications'
+
+
+class Families(models.Model):
+    familyid = models.AutoField(db_column='FamilyID', primary_key=True)  # Field name made lowercase.
+    familydescription = models.TextField(db_column='FamilyDescription', blank=True, null=True)  # Field name made lowercase.
+    familyname = models.CharField(db_column='FamilyName', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    familyshortdescription = models.TextField(db_column='FamilyShortDescription', blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Families'
+
+
+class Iesfiles(models.Model):
+    iesfileid = models.AutoField(db_column='IESFileID', primary_key=True)  # Field name made lowercase.
+    iesfile = models.TextField(db_column='IESFile', blank=True, null=True)  # Field name made lowercase.
+    iesfiledescription = models.TextField(db_column='IESFileDescription', blank=True, null=True)  # Field name made lowercase.
+    iesfilename = models.CharField(db_column='IESFileName', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'IESFiles'
+
+
+class Ledcharacteristics(models.Model):
+    ledid = models.AutoField(db_column='LEDID', primary_key=True)  # Field name made lowercase.
+    arraycbvalue = models.CharField(db_column='ArrayCBValue', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    arrayforwardcurrentrating = models.CharField(db_column='ArrayForwardCurrentRating', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    arrayforwardvoltagerating = models.CharField(db_column='ArrayForwardVoltageRating', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    arrayinsitutemperature = models.DecimalField(db_column='ArrayInSituTemperature', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    arrayoutput = models.CharField(db_column='ArrayOutput', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    arrayzhagatype = models.CharField(db_column='ArrayZhagaType', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    cct = models.CharField(db_column='CCT', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    chipcode = models.CharField(db_column='ChipCode', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    chipdimensions = models.CharField(db_column='ChipDimensions', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    chipforwardcurrentrating = models.CharField(db_column='ChipForwardCurrentRating', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    chipforwardvoltagerating = models.CharField(db_column='ChipForwardVoltageRating', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    chipseries = models.CharField(db_column='ChipSeries', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    chipvoltagerange = models.CharField(db_column='ChipVoltageRange', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    coi = models.CharField(db_column='COI', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    cri = models.CharField(db_column='CRI', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    duv = models.CharField(db_column='DUV', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    fidelityindex = models.DecimalField(db_column='FidelityIndex', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    flevel = models.CharField(db_column='FLevel', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    gamutindex = models.DecimalField(db_column='GamutIndex', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    insitutempofledchip = models.DecimalField(db_column='InSituTempOfLEDChip', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    ledmodulevf = models.DecimalField(db_column='LEDModuleVf', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    localaverages = models.CharField(db_column='LocalAverages', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    localchromashift = models.CharField(db_column='LocalChromaShift', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    localcolorfidelity = models.CharField(db_column='LocalColorFidelity', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    localhueshift = models.CharField(db_column='LocalHueShift', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    lumenpercentage50000hrs = models.DecimalField(db_column='LumenPercentage50000Hrs', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    miscellaneousinfo = models.TextField(db_column='MiscellaneousInfo', blank=True, null=True)  # Field name made lowercase.
+    moverpratio = models.DecimalField(db_column='MOverPRatio', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    peakwavelength = models.DecimalField(db_column='PeakWaveLength', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    plevel = models.CharField(db_column='PLevel', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    primarychipsupplier = models.CharField(db_column='PrimaryChipSupplier', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    r9value = models.DecimalField(db_column='R9Value', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    ratedlife = models.DecimalField(db_column='RatedLife', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    sdcminitial = models.DecimalField(db_column='SDCMInitial', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    sdcmoverlife = models.DecimalField(db_column='SDCMOverLife', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    secondarychipsupplier = models.CharField(db_column='SecondaryChipSupplier', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    spdr = models.CharField(db_column='SPDR', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    spratio = models.DecimalField(db_column='SPRatio', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    tm30report = models.CharField(db_column='TM30Report', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    versaluxarrayreferencenumber = models.CharField(db_column='VersaluxArrayReferenceNumber', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    versaluxchipreferencenumber = models.CharField(db_column='VersaluxChipReferenceNumber', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    vlevel = models.CharField(db_column='VLevel', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    whitepointx = models.DecimalField(db_column='WhitePointX', max_digits=5, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+    whitepointy = models.DecimalField(db_column='WhitePointY', max_digits=5, decimal_places=4, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'LEDCharacteristics'
+
+
+class Opticalspecifications(models.Model):
+    opticalid = models.AutoField(db_column='OpticalID', primary_key=True)  # Field name made lowercase.
+    beamangles = models.CharField(db_column='BeamAngles', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    beamspread = models.CharField(db_column='BeamSpread', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    bugrating = models.CharField(db_column='BUGRating', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    cartesiangraph = models.TextField(db_column='CartesianGraph', blank=True, null=True)  # Field name made lowercase.
+    category = models.CharField(db_column='Category', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    coneluxdiagram = models.TextField(db_column='ConeLuxDiagram', blank=True, null=True)  # Field name made lowercase.
+    description = models.TextField(db_column='Description', blank=True, null=True)  # Field name made lowercase.
+    dlcmaxugr = models.CharField(db_column='DLCMaxUGR', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    downwardoutputadvertised = models.DecimalField(db_column='DownwardOutputAdvertised', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    downwardoutputreal = models.DecimalField(db_column='DownwardOutputReal', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    efficacy = models.CharField(db_column='Efficacy', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    fieldangles = models.CharField(db_column='FieldAngles', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    fixtureoutputadvertised = models.DecimalField(db_column='FixtureOutputAdvertised', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    fixtureoutputreal = models.DecimalField(db_column='FixtureOutputReal', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    iesclassification = models.CharField(db_column='IESClassification', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    iesfiletableid = models.IntegerField(db_column='IESFileTableID', blank=True, null=True)  # Field name made lowercase.
+    l70 = models.DecimalField(db_column='L70', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    l80 = models.DecimalField(db_column='L80', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    l90 = models.DecimalField(db_column='L90', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+    lcsgraph = models.TextField(db_column='LCSGraph', blank=True, null=True)  # Field name made lowercase.
+    longitudinalclassification = models.CharField(db_column='LongitudinalClassification', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    luminousdimensions = models.CharField(db_column='LuminousDimensions', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    maxintensity = models.CharField(db_column='MaxIntensity', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    maxintensityangleh = models.CharField(db_column='MaxIntensityAngleH', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    maxintensityanglev = models.CharField(db_column='MaxIntensityAngleV', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    maxugr = models.CharField(db_column='MaxUGR', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    nematype = models.CharField(db_column='NEMAType', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    polarcurve = models.TextField(db_column='PolarCurve', blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    spacingcriteria = models.CharField(db_column='SpacingCriteria', max_length=20, blank=True, null=True)  # Field name made lowercase.
+    upwardoutputadvertised = models.CharField(db_column='UpwardOutputAdvertised', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    upwardoutputreal = models.CharField(db_column='UpwardOutputReal', max_length=10, blank=True, null=True)  # Field name made lowercase.
+    uwlr = models.DecimalField(db_column='UWLR', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'OpticalSpecifications'
+
+
+class Physicalconstructions(models.Model):
+    physicalid = models.AutoField(db_column='PhysicalID', primary_key=True)  # Field name made lowercase.
+    cutoutsize = models.CharField(db_column='CutOutSize', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    dimensiondiagram = models.TextField(db_column='DimensionDiagram', blank=True, null=True)  # Field name made lowercase.
+    dimensions = models.CharField(db_column='Dimensions', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    finishcolor = models.CharField(db_column='FinishColor', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    finishicon = models.TextField(db_column='FinishIcon', blank=True, null=True)  # Field name made lowercase.
+    finishtype = models.CharField(db_column='FinishType', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    housingmaterial = models.CharField(db_column='HousingMaterial', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    miscellaneousinfo = models.TextField(db_column='MiscellaneousInfo', blank=True, null=True)  # Field name made lowercase.
+    mountingtype = models.CharField(db_column='MountingType', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    mounts = models.CharField(db_column='Mounts', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    opticmaterial = models.CharField(db_column='OpticMaterial', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+    weight = models.DecimalField(db_column='Weight', max_digits=10, decimal_places=2, blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'PhysicalConstructions'
+
+
+class Productgroups(models.Model):
+    productgroupid = models.AutoField(db_column='ProductGroupID', primary_key=True)  # Field name made lowercase.
+    collection = models.CharField(db_column='Collection', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productcategory = models.CharField(db_column='ProductCategory', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productsubcategory = models.CharField(db_column='ProductSubCategory', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'ProductGroups'
+
+
+class Products(models.Model):
+    productid = models.AutoField(db_column='ProductID', primary_key=True)  # Field name made lowercase.
+    familyid = models.IntegerField(db_column='FamilyID', blank=True, null=True)  # Field name made lowercase.
+    heroimage = models.TextField(db_column='HeroImage', blank=True, null=True)  # Field name made lowercase.
+    productcode = models.CharField(db_column='ProductCode', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productgroupid = models.IntegerField(db_column='ProductGroupID', blank=True, null=True)  # Field name made lowercase.
+    subfamilyid = models.IntegerField(db_column='SubFamilyID', blank=True, null=True)  # Field name made lowercase.
+    supplierid = models.IntegerField(db_column='SupplierID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Products'
+
+
+class Subfamilies(models.Model):
+    subfamilyid = models.AutoField(db_column='SubFamilyID', primary_key=True)  # Field name made lowercase.
+    subfamilydescription = models.TextField(db_column='SubFamilyDescription', blank=True, null=True)  # Field name made lowercase.
+    subfamilyname = models.CharField(db_column='SubFamilyName', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    subfamilyshortdescription = models.TextField(db_column='SubFamilyShortDescription', blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'SubFamilies'
+
+
+class Suppliers(models.Model):
+    supplierid = models.AutoField(db_column='SupplierID', primary_key=True)  # Field name made lowercase.
+    supplierlogo = models.TextField(db_column='SupplierLogo', blank=True, null=True)  # Field name made lowercase.
+    suppliername = models.CharField(db_column='SupplierName', max_length=255, blank=True, null=True)  # Field name made lowercase.
+    productid = models.IntegerField(db_column='ProductID', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'Suppliers'
