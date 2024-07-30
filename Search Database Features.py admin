@@ -1,0 +1,132 @@
+# admin.py
+from django.contrib import admin
+from django.http import HttpResponse
+import csv
+from .models import (
+    Products, Families, Subfamilies, Suppliers, Productgroups, Physicalconstructions, Electricalspecifications,
+    Opticalspecifications, Ledcharacteristics, Driverspecifications, Certificateapprovals, Accessories, Iesfiles
+)
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('productid', 'productcode', 'familyid', 'subfamilyid', 'supplierid', 'productgroupid')
+    search_fields = ('productcode', 'familyid', 'subfamilyid', 'supplierid', 'productgroupid')
+    actions = ['export_as_csv']
+
+    def export_as_csv(self, request, queryset):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="products_export.csv"'
+        writer = csv.writer(response)
+
+        # Writing header
+        writer.writerow([
+            'ProductID', 'ProductCode', 'FamilyID', 'SubFamilyID', 'SupplierID', 'ProductGroupID', 'HeroImage',
+            'FamilyName', 'FamilyDescription', 'FamilyShortDescription',
+            'SubFamilyName', 'SubFamilyDescription', 'SubFamilyShortDescription',
+            'SupplierName', 'SupplierLogo',
+            'ProductCategory', 'ProductSubCategory', 'Collection',
+            'PhysicalID', 'HousingMaterial', 'OpticMaterial', 'Weight', 'PhysicalMiscInfo', 'FinishColor', 'FinishType', 'MountingType', 'Dimensions', 'CutOutSize', 'DimensionDiagram', 'FinishIcon',
+            'ElectricalID', 'RatedVoltage', 'Cycles', 'LCP', 'AdvertisedWatts', 'PowerFactor', 'Current', 'ConnectionDescription', 'ElectricalMiscInfo', 'ElectricalClass', 'TaMin', 'TaMax',
+            'OpticalID', 'OpticalDescription', 'OpticalCategory', 'BeamSpread', 'FixtureOutputReal', 'FixtureOutputAdvertised', 'DownwardOutputReal', 'DownwardOutputAdvertised', 'UpwardOutputReal', 'UpwardOutputAdvertised', 'UWLR', 'PolarCurve', 'CartesianGraph', 'LCSGraph', 'ConeLuxDiagram', 'LuminousDimensions', 'MaxUGR', 'DLCMaxUGR', 'SpacingCriteria', 'Efficacy', 'IESClassification', 'LongitudinalClassification', 'BUGRating', 'NEMAType', 'MaxIntensity', 'MaxIntensityAngleH', 'MaxIntensityAngleV', 'BeamAngles', 'FieldAngles', 'L70', 'L80', 'L90', 'IESFileTableID',
+            'LEDID', 'PrimaryChipSupplier', 'SecondaryChipSupplier', 'ChipSeries', 'ChipCode', 'CCT', 'CRI', 'COI', 'SPDR', 'ChipVoltageRange', 'ChipForwardVoltageRating', 'ChipForwardCurrentRating', 'VersaluxChipReferenceNumber', 'ArrayForwardVoltageRating', 'ArrayForwardCurrentRating', 'VersaluxArrayReferenceNumber', 'ArrayCBValue', 'ArrayInSituTemperature', 'ArrayOutput', 'ChipDimensions', 'ArrayZhagaType', 'R9Value', 'DUV', 'WhitePointX', 'WhitePointY', 'PeakWaveLength', 'MOverPRatio', 'SPRatio', 'LEDMiscInfo', 'TM30Report', 'FidelityIndex', 'GamutIndex', 'LocalChromaShift', 'LocalHueShift', 'LocalColorFidelity', 'PLevel', 'VLevel', 'FLevel', 'LocalAverages', 'SDCMOverLife', 'SDCMInitial', 'RatedLife', 'InSituTempOfLEDChip', 'LEDModuleVf', 'LumenPercentage50000Hrs',
+            'DriverID', 'VersaluxDriverCode', 'DriverDescription', 'DriverSupplier', 'Control', 'WattsLoss', 'ForwardCurrentRating', 'ForwardVoltageRating', 'DriverSetting', 'DriverMiscInfo', 'InputVoltageRangeMin', 'InputVoltageRangeMax', 'AOCIfRangeMin', 'AOCIfRangeMax', 'TypeCCurrent', 'TypeCVoltage', 'FixedOutput', 'Compatibility', 'ElectricalProtectionClass', 'DriverMounting', 'DriverIP', 'TaC', 'CLO', 'VfRangeMin', 'VfRangeMax', 'SELVHV', 'ExtNTC', 'InrushCurrent', 'InrushTWidth', 'Surge', 'DriverPowerFactor', 'LeakageCurrent', 'THDPercentage', 'PstLM', 'SVM', 'MaxOperatingTemp',
+            'CertificateID', 'IPRating', 'IKRating', 'EmergencyRating', 'HazardousRating', 'CeilingCoveringRating', 'DriveOverRating', 'WalkOverRating', 'SeismicRating', 'CertificateMiscInfo', 'Warranty', 'RCM', 'OperatingTempMin', 'OperatingTempMax', 'ATEX', 'B0FireResistance', 'B15FireResistance', 'Battery', 'Approvals',
+            'AccessoryID', 'AccessoryCode', 'AccessoryDescription', 'AccessoryShortDescription', 'AccessoryConstruction', 'AccessoryMiscInfo', 'AccessorySymbol', 'AccessoryHeroImage', 'AccessoryDimensionalDiagram',
+            'IESFileID', 'IESFile', 'IESFileName', 'IESFileDescription'
+        ])
+
+        # Writing data rows
+        for product in queryset:
+            family = Families.objects.filter(familyid=product.familyid).first()
+            subfamily = Subfamilies.objects.filter(subfamilyid=product.subfamilyid).first()
+            supplier = Suppliers.objects.filter(supplierid=product.supplierid).first()
+            productgroup = Productgroups.objects.filter(productgroupid=product.productgroupid).first()
+            physical = Physicalconstructions.objects.filter(productid=product.productid).first()
+            electrical = Electricalspecifications.objects.filter(productid=product.productid).first()
+            optical = Opticalspecifications.objects.filter(productid=product.productid).first()
+            led = Ledcharacteristics.objects.filter(productid=product.productid).first()
+            driver = Driverspecifications.objects.filter(productid=product.productid).first()
+            certificate = Certificateapprovals.objects.filter(productid=product.productid).first()
+            accessory = Accessories.objects.filter(productid=product.productid).first()
+            ies = Iesfiles.objects.filter(productid=product.productid).first()
+
+            writer.writerow([
+                product.productid or 'NULL', product.productcode or 'NULL', product.familyid or 'NULL', product.subfamilyid or 'NULL', product.supplierid or 'NULL', product.productgroupid or 'NULL', product.heroimage or 'NULL',
+                family.familyname if family else 'NULL', family.familydescription if family else 'NULL', family.familyshortdescription if family else 'NULL',
+                subfamily.subfamilyname if subfamily else 'NULL', subfamily.subfamilydescription if subfamily else 'NULL', subfamily.subfamilyshortdescription if subfamily else 'NULL',
+                supplier.suppliername if supplier else 'NULL', supplier.supplierlogo if supplier else 'NULL',
+                productgroup.productcategory if productgroup else 'NULL', productgroup.productsubcategory if productgroup else 'NULL', productgroup.collection if productgroup else 'NULL',
+                physical.physicalid if physical else 'NULL', physical.housingmaterial if physical else 'NULL', physical.opticmaterial if physical else 'NULL', physical.weight if physical else 'NULL', physical.miscellaneousinfo if physical else 'NULL', physical.finishcolor if physical else 'NULL', physical.finishtype if physical else 'NULL', physical.mountingtype if physical else 'NULL', physical.dimensions if physical else 'NULL', physical.cutoutsize if physical else 'NULL', physical.dimensiondiagram if physical else 'NULL', physical.finishicon if physical else 'NULL',
+                electrical.electricalid if electrical else 'NULL', electrical.ratedvoltage if electrical else 'NULL', electrical.cycles if electrical else 'NULL', electrical.lcp if electrical else 'NULL', electrical.advertisedwatts if electrical else 'NULL', electrical.powerfactor if electrical else 'NULL', electrical.current if electrical else 'NULL', electrical.connectiondescription if electrical else 'NULL', electrical.miscellaneousinfo if electrical else 'NULL', electrical.electricalclass if electrical else 'NULL', electrical.tamin if electrical else 'NULL', electrical.tamax if electrical else 'NULL',
+                optical.opticalid if optical else 'NULL', optical.description if optical else 'NULL', optical.category if optical else 'NULL', optical.beamspread if optical else 'NULL', optical.fixtureoutputreal if optical else 'NULL', optical.fixtureoutputadvertised if optical else 'NULL', optical.downwardoutputreal if optical else 'NULL', optical.downwardoutputadvertised if optical else 'NULL', optical.upwardoutputreal if optical else 'NULL', optical.upwardoutputadvertised if optical else 'NULL', optical.uwlr if optical else 'NULL', optical.polarcurve if optical else 'NULL', optical.cartesiangraph if optical else 'NULL', optical.lcsgraph if optical else 'NULL', optical.coneluxdiagram if optical else 'NULL', optical.luminousdimensions if optical else 'NULL', optical.maxugr if optical else 'NULL', optical.dlcmaxugr if optical else 'NULL', optical.spacingcriteria if optical else 'NULL', optical.efficacy if optical else 'NULL', optical.iesclassification if optical else 'NULL', optical.longitudinalclassification if optical else 'NULL', optical.bugrating if optical else 'NULL', optical.nematype if optical else 'NULL', optical.maxintensity if optical else 'NULL', optical.maxintensityangleh if optical else 'NULL', optical.maxintensityanglev if optical else 'NULL', optical.beamangles if optical else 'NULL', optical.fieldangles if optical else 'NULL', optical.l70 if optical else 'NULL', optical.l80 if optical else 'NULL', optical.l90 if optical else 'NULL', optical.iesfiletableid if optical else 'NULL',
+                led.ledid if led else 'NULL', led.primarychipsupplier if led else 'NULL', led.secondarychipsupplier if led else 'NULL', led.chipseries if led else 'NULL', led.chipcode if led else 'NULL', led.cct if led else 'NULL', led.cri if led else 'NULL', led.coi if led else 'NULL', led.spdr if led else 'NULL', led.chipvoltagerange if led else 'NULL', led.chipforwardvoltagerating if led else 'NULL', led.chipforwardcurrentrating if led else 'NULL', led.versaluxchipreferencenumber if led else 'NULL', led.arrayforwardvoltagerating if led else 'NULL', led.arrayforwardcurrentrating if led else 'NULL', led.versaluxarrayreferencenumber if led else 'NULL', led.arraycbvalue if led else 'NULL', led.arrayinsitutemperature if led else 'NULL', led.arrayoutput if led else 'NULL', led.chipdimensions if led else 'NULL', led.arrayzhagatype if led else 'NULL', led.r9value if led else 'NULL', led.duv if led else 'NULL', led.whitepointx if led else 'NULL', led.whitepointy if led else 'NULL', led.peakwavelength if led else 'NULL', led.moverpratio if led else 'NULL', led.spratio if led else 'NULL', led.miscellaneousinfo if led else 'NULL', led.tm30report if led else 'NULL', led.fidelityindex if led else 'NULL', led.gamutindex if led else 'NULL', led.localchromashift if led else 'NULL', led.localhueshift if led else 'NULL', led.localcolorfidelity if led else 'NULL', led.plevel if led else 'NULL', led.vlevel if led else 'NULL', led.flevel if led else 'NULL', led.localaverages if led else 'NULL', led.sdcminitial if led else 'NULL', led.sdcmoverlife if led else 'NULL', led.ratedlife if led else 'NULL', led.insitutempofledchip if led else 'NULL', led.ledmodulevf if led else 'NULL', led.lumenpercentage50000hrs if led else 'NULL',
+                driver.driverid if driver else 'NULL', driver.versaluxdrivercode if driver else 'NULL', driver.description if driver else 'NULL', driver.driversupplier if driver else 'NULL', driver.control if driver else 'NULL', driver.wattsloss if driver else 'NULL', driver.forwardcurrentrating if driver else 'NULL', driver.forwardvoltagerating if driver else 'NULL', driver.driversetting if driver else 'NULL', driver.miscellaneousinfo if driver else 'NULL', driver.inputvoltagerangemin if driver else 'NULL', driver.inputvoltagerangemax if driver else 'NULL', driver.aocifrangemin if driver else 'NULL', driver.aocifrangemax if driver else 'NULL', driver.typeccurrent if driver else 'NULL', driver.typecvoltage if driver else 'NULL', driver.fixedoutput if driver else 'NULL', driver.compatibility if driver else 'NULL', driver.electricalprotectionclass if driver else 'NULL', driver.drivermounting if driver else 'NULL', driver.ip if driver else 'NULL', driver.tac if driver else 'NULL', driver.clo if driver else 'NULL', driver.vfrangemin if driver else 'NULL', driver.vfrangemax if driver else 'NULL', driver.selhv if driver else 'NULL', driver.extntc if driver else 'NULL', driver.inrushcurrent if driver else 'NULL', driver.inrushtwidth if driver else 'NULL', driver.surge if driver else 'NULL', driverpowerfactor if driver else 'NULL', driver.leakagecurrent if driver else 'NULL', driver.thdpercentage if driver else 'NULL', driver.pstlm if driver else 'NULL', driver.svm if driver else 'NULL', driver.maxoperatingtemp if driver else 'NULL',
+                certificate.certificateid if certificate else 'NULL', certificate.iprating if certificate else 'NULL', certificate.ikrating if certificate else 'NULL', certificate.emergencyrating if certificate else 'NULL', certificate.hazardousrating if certificate else 'NULL', certificate.ceilingcoveringrating if certificate else 'NULL', certificate.driveoverrating if certificate else 'NULL', certificate.walkoverrating if certificate else 'NULL', certificate.seismicrating if certificate else 'NULL', certificate.miscellaneousinfo if certificate else 'NULL', certificate.warranty if certificate else 'NULL', certificate.rcm if certificate else 'NULL', certificate.operatingtempmin if certificate else 'NULL', certificate.operatingtempmax if certificate else 'NULL', certificate.atex if certificate else 'NULL', certificate.b0fireresistance if certificate else 'NULL', certificate.b15fireresistance if certificate else 'NULL', certificate.battery if certificate else 'NULL', certificate.approvals if certificate else 'NULL',
+                accessory.accessoryid if accessory else 'NULL', accessory.accessorycode if accessory else 'NULL', accessory.accessorydescription if accessory else 'NULL', accessory.accessoryshortdescription if accessory else 'NULL', accessory.accessoryconstruction if accessory else 'NULL', accessory.miscellaneousinfo if accessory else 'NULL', accessory.accessorysymbol if accessory else 'NULL', accessory.accessoryheroimage if accessory else 'NULL', accessory.accessorydimensionaldiagram if accessory else 'NULL',
+                ies.iesfileid if ies else 'NULL', ies.iesfile if ies else 'NULL', ies.iesfilename if ies else 'NULL', ies.iesfiledescription if ies else 'NULL'
+            ])
+
+        return response
+
+admin.site.register(Products, ProductAdmin)
+
+class AccessoriesAdmin(admin.ModelAdmin):
+    list_display = ('accessoryid', 'accessorycode', 'accessorydescription')
+    search_fields = ('accessorycode', 'accessorydescription')
+
+class CertificateapprovalsAdmin(admin.ModelAdmin):
+    list_display = ('certificateid', 'approvals', 'atex')
+    search_fields = ('approvals', 'atex')
+
+class DriverspecificationsAdmin(admin.ModelAdmin):
+    list_display = ('driverid', 'description', 'control')
+    search_fields = ('description', 'control')
+
+class ElectricalspecificationsAdmin(admin.ModelAdmin):
+    list_display = ('electricalid', 'ratedvoltage', 'cycles')
+    search_fields = ('ratedvoltage', 'cycles')
+
+class FamiliesAdmin(admin.ModelAdmin):
+    list_display = ('familyid', 'familyname', 'familydescription')
+    search_fields = ('familyname', 'familydescription')
+
+class IesfilesAdmin(admin.ModelAdmin):
+    list_display = ('iesfileid', 'iesfilename', 'iesfiledescription')
+    search_fields = ('iesfilename', 'iesfiledescription')
+
+class LedcharacteristicsAdmin(admin.ModelAdmin):
+    list_display = ('ledid', 'chipcode', 'cct')
+    search_fields = ('chipcode', 'cct')
+
+class OpticalspecificationsAdmin(admin.ModelAdmin):
+    list_display = ('opticalid', 'category', 'description')
+    search_fields = ('category', 'description')
+
+class PhysicalconstructionsAdmin(admin.ModelAdmin):
+    list_display = ('physicalid', 'housingmaterial', 'dimensions')
+    search_fields = ('housingmaterial', 'dimensions')
+
+class ProductgroupsAdmin(admin.ModelAdmin):
+    list_display = ('productgroupid', 'productcategory', 'collection')
+    search_fields = ('productcategory', 'collection')
+
+class SubfamiliesAdmin(admin.ModelAdmin):
+    list_display = ('subfamilyid', 'subfamilyname', 'subfamilydescription')
+    search_fields = ('subfamilyname', 'subfamilydescription')
+
+class SuppliersAdmin(admin.ModelAdmin):
+    list_display = ('supplierid', 'suppliername', 'supplierlogo')
+    search_fields = ('suppliername', 'supplierlogo')
+
+# Register all models with the admin site
+admin.site.register(Accessories, AccessoriesAdmin)
+admin.site.register(Certificateapprovals, CertificateapprovalsAdmin)
+admin.site.register(Driverspecifications, DriverspecificationsAdmin)
+admin.site.register(Electricalspecifications, ElectricalspecificationsAdmin)
+admin.site.register(Families, FamiliesAdmin)
+admin.site.register(Iesfiles, IesfilesAdmin)
+admin.site.register(Ledcharacteristics, LedcharacteristicsAdmin)
+admin.site.register(Opticalspecifications, OpticalspecificationsAdmin)
+admin.site.register(Physicalconstructions, PhysicalconstructionsAdmin)
+admin.site.register(Productgroups, ProductgroupsAdmin)
+admin.site.register(Subfamilies, SubfamiliesAdmin)
+admin.site.register(Suppliers, SuppliersAdmin)
