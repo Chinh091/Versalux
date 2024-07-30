@@ -1,0 +1,29 @@
+USE `defaultdb`;
+
+SELECT
+    p.ProductID, p.ProductCode, p.FamilyID, p.SubFamilyID, p.SupplierID, p.ProductGroupID, p.HeroImage,
+    f.FamilyName, f.FamilyDescription, f.FamilyShortDescription,
+    sf.SubFamilyName, sf.SubFamilyDescription, sf.SubFamilyShortDescription,
+    s.SupplierName, s.SupplierLogo,
+    pg.ProductCategory, pg.ProductSubCategory, pg.Collection,
+    pc.PhysicalID, pc.HousingMaterial, pc.OpticMaterial, pc.Weight, pc.MiscellaneousInfo AS PhysicalMiscInfo, pc.FinishColor, pc.FinishType, pc.MountingType, pc.Dimensions, pc.CutOutSize, pc.DimensionDiagram, pc.FinishIcon,
+    es.ElectricalID, es.RatedVoltage, es.Cycles, es.LCP, es.AdvertisedWatts, es.PowerFactor, es.Current, es.ConnectionDescription, es.MiscellaneousInfo AS ElectricalMiscInfo, es.ElectricalClass, es.TaMin, es.TaMax,
+    os.OpticalID, os.Description AS OpticalDescription, os.Category AS OpticalCategory, os.BeamSpread, os.FixtureOutputReal, os.FixtureOutputAdvertised, os.DownwardOutputReal, os.DownwardOutputAdvertised, os.UpwardOutputReal, os.UpwardOutputAdvertised, os.UWLR, os.PolarCurve, os.CartesianGraph, os.LCSGraph, os.ConeLuxDiagram, os.LuminousDimensions, os.MaxUGR, os.DLCMaxUGR, os.SpacingCriteria, os.Efficacy, os.IESClassification, os.LongitudinalClassification, os.BUGRating, os.NEMAType, os.MaxIntensity, os.MaxIntensityAngleH, os.MaxIntensityAngleV, os.BeamAngles, os.FieldAngles, os.L70, os.L80, os.L90, os.IESFileTableID,
+    led.LEDID, led.PrimaryChipSupplier, led.SecondaryChipSupplier, led.ChipSeries, led.ChipCode, led.CCT, led.CRI, led.COI, led.SPDR, led.ChipVoltageRange, led.ChipForwardVoltageRating, led.ChipForwardCurrentRating, led.VersaluxChipReferenceNumber, led.ArrayForwardVoltageRating, led.ArrayForwardCurrentRating, led.VersaluxArrayReferenceNumber, led.ArrayCBValue, led.ArrayInSituTemperature, led.ArrayOutput, led.ChipDimensions, led.ArrayZhagaType, led.R9Value, led.DUV, led.WhitePointX, led.WhitePointY, led.PeakWaveLength, led.MOverPRatio, led.SPRatio, led.MiscellaneousInfo AS LEDMiscInfo, led.TM30Report, led.FidelityIndex, led.GamutIndex, led.LocalChromaShift, led.LocalHueShift, led.LocalColorFidelity, led.PLevel, led.VLevel, led.FLevel, led.LocalAverages, led.SDCMOverLife, led.SDCMInitial, led.RatedLife, led.InSituTempOfLEDChip, led.LEDModuleVf, led.LumenPercentage50000Hrs,
+    ds.DriverID, ds.VersaluxDriverCode, ds.Description AS DriverDescription, ds.DriverSupplier, ds.Control, ds.WattsLoss, ds.ForwardCurrentRating, ds.ForwardVoltageRating, ds.DriverSetting, ds.MiscellaneousInfo AS DriverMiscInfo, ds.InputVoltageRangeMin, ds.InputVoltageRangeMax, ds.AOCIfRangeMin, ds.AOCIfRangeMax, ds.TypeCCurrent, ds.TypeCVoltage, ds.FixedOutput, ds.Compatibility, ds.ElectricalProtectionClass, ds.DriverMounting, ds.IP AS DriverIP, ds.TaC, ds.CLO, ds.VfRangeMin, ds.VfRangeMax, ds.SELVHV, ds.ExtNTC, ds.InrushCurrent, ds.InrushTWidth, ds.Surge, ds.PowerFactor AS DriverPowerFactor, ds.LeakageCurrent, ds.THDPercentage, ds.PstLM, ds.SVM, ds.MaxOperatingTemp,
+    ca.CertificateID, ca.IPRating, ca.IKRating, ca.EmergencyRating, ca.HazardousRating, ca.CeilingCoveringRating, ca.DriveOverRating, ca.WalkOverRating, ca.SeismicRating, ca.MiscellaneousInfo AS CertificateMiscInfo, ca.Warranty, ca.RCM, ca.OperatingTempMin, ca.OperatingTempMax, ca.ATEX, ca.B0FireResistance, ca.B15FireResistance, ca.Battery, ca.Approvals,
+    acc.AccessoryID, acc.AccessoryCode, acc.AccessoryDescription, acc.AccessoryShortDescription, acc.AccessoryConstruction, acc.MiscellaneousInfo AS AccessoryMiscInfo, acc.AccessorySymbol, acc.AccessoryHeroImage, acc.AccessoryDimensionalDiagram,
+    ies.IESFileID, ies.IESFile, ies.IESFileName, ies.IESFileDescription
+FROM `Products` p
+LEFT JOIN `Families` f ON p.FamilyID = f.FamilyID
+LEFT JOIN `SubFamilies` sf ON p.SubFamilyID = sf.SubFamilyID
+LEFT JOIN `Suppliers` s ON p.SupplierID = s.SupplierID
+LEFT JOIN `ProductGroups` pg ON p.ProductGroupID = pg.ProductGroupID
+LEFT JOIN `PhysicalConstructions` pc ON p.ProductID = pc.ProductID
+LEFT JOIN `ElectricalSpecifications` es ON p.ProductID = es.ProductID
+LEFT JOIN `OpticalSpecifications` os ON p.ProductID = os.ProductID
+LEFT JOIN `LEDCharacteristics` led ON p.ProductID = led.ProductID
+LEFT JOIN `DriverSpecifications` ds ON p.ProductID = ds.ProductID
+LEFT JOIN `CertificateApprovals` ca ON p.ProductID = ca.ProductID
+LEFT JOIN `Accessories` acc ON p.ProductID = acc.ProductID
+LEFT JOIN `IESFiles` ies ON p.ProductID = ies.ProductID;
