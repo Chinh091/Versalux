@@ -2,17 +2,19 @@
 from django.contrib import admin
 from django.http import HttpResponse
 import csv
-from .models import Products, Families, Subfamilies, Suppliers, Productgroups, Physicalconstructions, Electricalspecifications, Opticalspecifications, Ledcharacteristics, Driverspecifications, Certificateapprovals, Accessories, Iesfiles
+from .models import (
+    Products, Families, Subfamilies, Suppliers, Productgroups, Physicalconstructions, Electricalspecifications,
+    Opticalspecifications, Ledcharacteristics, Driverspecifications, Certificateapprovals, Accessories, Iesfiles
+)
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('productid', 'productcode')
-    search_fields = ('productcode',)
+    list_display = ('productid', 'productcode', 'familyid', 'subfamilyid', 'supplierid', 'productgroupid')
+    search_fields = ('productcode', 'familyid', 'subfamilyid', 'supplierid', 'productgroupid')
     actions = ['export_as_csv']
 
     def export_as_csv(self, request, queryset):
         response = HttpResponse(content_type='text/csv')
         response['Content-Disposition'] = 'attachment; filename="products_export.csv"'
-
         writer = csv.writer(response)
 
         # Writing header
@@ -66,3 +68,65 @@ class ProductAdmin(admin.ModelAdmin):
         return response
 
 admin.site.register(Products, ProductAdmin)
+
+class AccessoriesAdmin(admin.ModelAdmin):
+    list_display = ('accessoryid', 'accessorycode', 'accessorydescription')
+    search_fields = ('accessorycode', 'accessorydescription')
+
+class CertificateapprovalsAdmin(admin.ModelAdmin):
+    list_display = ('certificateid', 'approvals', 'atex')
+    search_fields = ('approvals', 'atex')
+
+class DriverspecificationsAdmin(admin.ModelAdmin):
+    list_display = ('driverid', 'description', 'control')
+    search_fields = ('description', 'control')
+
+class ElectricalspecificationsAdmin(admin.ModelAdmin):
+    list_display = ('electricalid', 'ratedvoltage', 'cycles')
+    search_fields = ('ratedvoltage', 'cycles')
+
+class FamiliesAdmin(admin.ModelAdmin):
+    list_display = ('familyid', 'familyname', 'familydescription')
+    search_fields = ('familyname', 'familydescription')
+
+class IesfilesAdmin(admin.ModelAdmin):
+    list_display = ('iesfileid', 'iesfilename', 'iesfiledescription')
+    search_fields = ('iesfilename', 'iesfiledescription')
+
+class LedcharacteristicsAdmin(admin.ModelAdmin):
+    list_display = ('ledid', 'chipcode', 'cct')
+    search_fields = ('chipcode', 'cct')
+
+class OpticalspecificationsAdmin(admin.ModelAdmin):
+    list_display = ('opticalid', 'category', 'description')
+    search_fields = ('category', 'description')
+
+class PhysicalconstructionsAdmin(admin.ModelAdmin):
+    list_display = ('physicalid', 'housingmaterial', 'dimensions')
+    search_fields = ('housingmaterial', 'dimensions')
+
+class ProductgroupsAdmin(admin.ModelAdmin):
+    list_display = ('productgroupid', 'productcategory', 'collection')
+    search_fields = ('productcategory', 'collection')
+
+class SubfamiliesAdmin(admin.ModelAdmin):
+    list_display = ('subfamilyid', 'subfamilyname', 'subfamilydescription')
+    search_fields = ('subfamilyname', 'subfamilydescription')
+
+class SuppliersAdmin(admin.ModelAdmin):
+    list_display = ('supplierid', 'suppliername', 'supplierlogo')
+    search_fields = ('suppliername', 'supplierlogo')
+
+# Register all models with the admin site
+admin.site.register(Accessories, AccessoriesAdmin)
+admin.site.register(Certificateapprovals, CertificateapprovalsAdmin)
+admin.site.register(Driverspecifications, DriverspecificationsAdmin)
+admin.site.register(Electricalspecifications, ElectricalspecificationsAdmin)
+admin.site.register(Families, FamiliesAdmin)
+admin.site.register(Iesfiles, IesfilesAdmin)
+admin.site.register(Ledcharacteristics, LedcharacteristicsAdmin)
+admin.site.register(Opticalspecifications, OpticalspecificationsAdmin)
+admin.site.register(Physicalconstructions, PhysicalconstructionsAdmin)
+admin.site.register(Productgroups, ProductgroupsAdmin)
+admin.site.register(Subfamilies, SubfamiliesAdmin)
+admin.site.register(Suppliers, SuppliersAdmin)
