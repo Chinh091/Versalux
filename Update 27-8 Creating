@@ -291,6 +291,7 @@ CREATE TABLE `DriverSpecifications` (
     `SVM` VARCHAR(5),
     `MaxOperatingTemp` VARCHAR(10),
     `NumberOfDrivers` INT, 
+    `DriverRemote` BOOLEAN,
     `ProductID` INT,  
     PRIMARY KEY (`DriverID`)
 );
