@@ -48,7 +48,7 @@ CREATE TABLE `Suppliers` (
 );
 
 CREATE TABLE `PhysicalConstructions` (
-    `PhysicalID` VARCHAR(255),  
+    `PhysicalID` VARCHAR(255) NULL,
     `HousingMaterial` VARCHAR(100),
     `OpticMaterial` VARCHAR(100),
     `Weight` VARCHAR(10),
@@ -58,17 +58,26 @@ CREATE TABLE `PhysicalConstructions` (
     `MountingType` VARCHAR(50),
     `Mounts` VARCHAR(50),
     `Dimensions` VARCHAR(150),
-    `Length` DECIMAL(10, 2) NULL, 
-    `Width` DECIMAL(10, 2) NULL,  
-    `Height` DECIMAL(10, 2) NULL, 
+    `Length` DECIMAL(10, 2) NULL,
+    `Width` DECIMAL(10, 2) NULL,
+    `Height` DECIMAL(10, 2) NULL,
     `CutOutSize` VARCHAR(20),
-    `DimensionDiagram` VARCHAR(255) NULL,  
+    `DimensionDiagram` VARCHAR(255) NULL,
     `Diameter` VARCHAR(20),
-    `FinishIcon` VARCHAR(255) NULL, 
+    `FinishIcon` VARCHAR(255) NULL,
     `WeightIncludingDriver` VARCHAR(20),
-    `ProductID` VARCHAR(255),  
+    `Termination` VARCHAR(255),  
+    `TypeOfThroughWiring` VARCHAR(50),  
+    `CableGland` VARCHAR(50),  
+    `NumberOfCableGlands` INT, 
+    `BlindPlugs` VARCHAR(50),  
+    `NumberOfBlindPlugs` INT, 
+    `MaxCableDiameter_mm` INT, 
+    `MinCableDiameter_mm` INT,  
+    `ProductID` VARCHAR(255), 
     PRIMARY KEY (`PhysicalID`)
 );
+
 
 
 CREATE TABLE `ProductGroups` (
@@ -82,7 +91,7 @@ CREATE TABLE `ProductGroups` (
 );
 
 CREATE TABLE `ElectricalSpecifications` (
-    `ElectricalID` VARCHAR(255), 
+    `ElectricalID` VARCHAR(255),
     `RatedVoltage` VARCHAR(30),
     `Cycles` VARCHAR(30),
     `LCP` VARCHAR(255),
@@ -94,9 +103,18 @@ CREATE TABLE `ElectricalSpecifications` (
     `ElectricalClass` VARCHAR(20),
     `TaMin` VARCHAR(10),
     `TaMax` VARCHAR(10),
+    `EMCCategory` VARCHAR(255), 
+    `LeakageCurrent_mA` DECIMAL(3, 1),  
+    `MainFeedDCMin` INT, 
+    `MainFeedDCMax` INT,  
+    `NumLuminaires10AMCBTypeB` INT,
+    `NumLuminaires10AMCBTypeC` INT, 
+    `NumLuminaires16AMCBTypeB` INT,  
+    `NumLuminaires16AMCBTypeC` INT, 
     `ProductID` VARCHAR(255),  
     PRIMARY KEY (`ElectricalID`)
 );
+
 
 CREATE TABLE `OpticalSpecifications` (
     `OpticalID` VARCHAR(255),
@@ -158,9 +176,18 @@ CREATE TABLE `OpticalSpecifications` (
     `IESFileTableID` VARCHAR(50),
     `IESFileLink` VARCHAR(255) NULL,
     `IESSymbolLink` VARCHAR(255) NULL,
-    `ProductID` VARCHAR(255), 
+    `LightDistributionUpPercent` INT, 
+    `LightDistributionDownPercent` INT,  
+    `MacAdamStep` INT,  
+    `EnergyClassLightSource` VARCHAR(5),  
+    `L70MedianUsefulLifeLEDTa25Hr` INT,
+    `L80MedianUsefulLifeLEDTa25Hr` INT, 
+    `L70MedianUsefulLifeLEDMaxTaHr` INT,  
+    `L80MedianUsefulLifeLEDMaxTaHr` INT, 
+    `ProductID` VARCHAR(255),
     PRIMARY KEY (`OpticalID`)
 );
+
 
 CREATE TABLE `LEDCharacteristics` (
     `LEDID` VARCHAR(255),
@@ -264,10 +291,10 @@ CREATE TABLE `DriverSpecifications` (
     `PstLM` VARCHAR(5),
     `SVM` VARCHAR(5),
     `MaxOperatingTemp` VARCHAR(10),
-    `ProductID` VARCHAR(255),  
+    `NumberOfDrivers` INT, 
+    `ProductID` VARCHAR(255), 
     PRIMARY KEY (`DriverID`)
 );
-
 
 CREATE TABLE `CertificateApprovals` (
     `CertificateID` VARCHAR(255),
@@ -278,6 +305,10 @@ CREATE TABLE `CertificateApprovals` (
     `EmergencyClassificationC90` VARCHAR(10),
     `EmergencyClassificationC180` VARCHAR(10) NULL,
     `EmergencyClassificationC270` VARCHAR(10) NULL,
+    `TypeOfEmergency` VARCHAR(50),  
+    `EmergencyDurationBatteryModeHrs` INT,  
+    `ChargingPowerConsumptionEmgW` DECIMAL(3, 1),  
+    `EmergencyOutputBatteryModePercent` INT,  
     `HazardousRating` VARCHAR(50) NULL,
     `CeilingCoveringRating` VARCHAR(10) NULL,
     `DriveOverRating` VARCHAR(20) NULL,
@@ -320,9 +351,17 @@ CREATE TABLE `CertificateApprovals` (
     `AustralianMade` BOOLEAN,
     `AEMOCertified` VARCHAR(10) NULL,
     `WheelMark` VARCHAR(10) NULL,
+    `MarineApproved` BOOLEAN,
+    `IgnitionClass` VARCHAR(20),
+    `ClassExGas` VARCHAR(50),
+    `ClassExDust` VARCHAR(50),
+    `MaxSurfaceTempDust` INT,
+    `EXZone` VARCHAR(255),
+    `IECEx` BOOLEAN,
     `ProductID` VARCHAR(255),  
     PRIMARY KEY (`CertificateID`)
 );
+
 
 CREATE TABLE `Accessories` (
     `AccessoryID` VARCHAR(255),
@@ -345,6 +384,6 @@ CREATE TABLE `Photometry` (
     `FileType` VARCHAR(10),
     `IESFileName` VARCHAR(255),
     `IESFileDescription` TEXT,
-    `ProductID` VARCHAR(255),  -- Preserved from the original structure for relationship
+    `ProductID` VARCHAR(255), 
     PRIMARY KEY (`IESFileID`)
 );
