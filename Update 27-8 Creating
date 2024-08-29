@@ -410,3 +410,78 @@ CREATE TABLE `ConeLuxData` (
     `MedLux` INT NOT NULL,
     PRIMARY KEY (`ConeLuxDataID`),
 );
+
+
+-- 1. Alter RelatedProducts to establish many-to-many relationship with Products
+ALTER TABLE `RelatedProducts`
+ADD CONSTRAINT `FK_RelatedProducts_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+ALTER TABLE `RelatedProducts`
+ADD CONSTRAINT `FK_RelatedProducts_RelatedProduct`
+    FOREIGN KEY (`RelatedProductIDRef`) REFERENCES `Products`(`ProductID`);
+
+-- 2. Alter Families to establish one-to-many relationship with Products
+ALTER TABLE `Families`
+ADD CONSTRAINT `FK_Families_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 3. Alter SubFamilies to establish one-to-many relationship with Products
+ALTER TABLE `SubFamilies`
+ADD CONSTRAINT `FK_SubFamilies_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 4. Alter Suppliers to establish one-to-many relationship with Products
+ALTER TABLE `Suppliers`
+ADD CONSTRAINT `FK_Suppliers_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 5. Alter PhysicalConstructions to establish one-to-one relationship with Products
+ALTER TABLE `PhysicalConstructions`
+ADD CONSTRAINT `FK_PhysicalConstructions_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 6. Alter ProductGroups to establish one-to-many relationship with Products
+ALTER TABLE `ProductGroups`
+ADD CONSTRAINT `FK_ProductGroups_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 7. Alter ElectricalSpecifications to establish one-to-one relationship with Products
+ALTER TABLE `ElectricalSpecifications`
+ADD CONSTRAINT `FK_ElectricalSpecifications_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 8. Alter OpticalSpecifications to establish one-to-one relationship with Products
+ALTER TABLE `OpticalSpecifications`
+ADD CONSTRAINT `FK_OpticalSpecifications_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 9. Alter LEDCharacteristics to establish one-to-one relationship with Products
+ALTER TABLE `LEDCharacteristics`
+ADD CONSTRAINT `FK_LEDCharacteristics_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 10. Alter DriverSpecifications to establish one-to-one relationship with Products
+ALTER TABLE `DriverSpecifications`
+ADD CONSTRAINT `FK_DriverSpecifications_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 11. Alter CertificateApprovals to establish one-to-one relationship with Products
+ALTER TABLE `CertificateApprovals`
+ADD CONSTRAINT `FK_CertificateApprovals_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 12. Alter Accessories to establish one-to-many relationship with Products
+ALTER TABLE `Accessories`
+ADD CONSTRAINT `FK_Accessories_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 13. Alter Photometry to establish one-to-one relationship with Products
+ALTER TABLE `Photometry`
+ADD CONSTRAINT `FK_Photometry_Product`
+    FOREIGN KEY (`ProductID`) REFERENCES `Products`(`ProductID`);
+
+-- 14. Alter ConeLuxData to establish one-to-many relationship with Photometry
+ALTER TABLE `ConeLuxData`
+ADD CONSTRAINT `FK_ConeLuxData_Photometry`
+    FOREIGN KEY (`IESFileID`) REFERENCES `Photometry`(`IESFileID`);
