@@ -9,7 +9,17 @@ CREATE TABLE `Products` (
     `ProductGroupID` INT,
     `SubFamilyID` INT,
     `SupplierID` INT,
+    `ProductStatus` Text,
+    `DateAdded` VARCHAR(15),
     PRIMARY KEY (`ProductID`)
+);
+
+CREATE TABLE `RelatedProducts` (
+    `RelatedProductID` INT AUTO_INCREMENT,
+    `ProductID` INT,
+    `RelatedProductIDRef` VARCHAR(255) NOT NULL,
+    `RelationshipType` VARCHAR(50),
+    PRIMARY KEY (`RelatedProductID`),
 );
 
 CREATE TABLE `Families` (
@@ -160,7 +170,6 @@ CREATE TABLE `OpticalSpecifications` (
     `MaxIntensity` VARCHAR(20),
     `MaxIntensityAngleH` VARCHAR(10),
     `MaxIntensityAngleV` VARCHAR(10),
-    `BeamAngles` VARCHAR(10),
     `HorizontalBeamAngle` VARCHAR(10),
     `HorizontalBeamAngleSplit1` VARCHAR(10) NULL,
     `HorizontalBeamAngleSplit2` VARCHAR(10),
@@ -275,7 +284,8 @@ CREATE TABLE `DriverSpecifications` (
     `DriverMounting` BOOLEAN,
     `DriverWeight` VARCHAR(10),
     `DriverIP` VARCHAR(10),
-    `TaC` VARCHAR(10),
+    `TaC_Min` VARCHAR(10),
+    `TaC_Max` VARCHAR(10),    
     `CLO` VARCHAR(10),
     `VfRangeMin` VARCHAR(10),
     `VfRangeMax` VARCHAR(10),
@@ -293,6 +303,10 @@ CREATE TABLE `DriverSpecifications` (
     `NumberOfDrivers` INT, 
     `DriverRemote` BOOLEAN,
     `ProductID` INT,  
+    `CertificationStatus` INT,
+    `CertificationExpiry` VARCHAR(15),
+    `CertificationLevel` VARCHAR(50),
+    `CertificationReference` VARCHAR(50),
     PRIMARY KEY (`DriverID`)
 );
 
@@ -385,4 +399,14 @@ CREATE TABLE `Photometry` (
     `IESFileName` VARCHAR(255),
     `ProductID` INT, 
     PRIMARY KEY (`IESFileID`)
+);
+
+CREATE TABLE `ConeLuxData` (
+    `ConeLuxDataID` INT AUTO_INCREMENT,
+    `IESFileID` INT,
+    `Height_m` DECIMAL(4, 2) NOT NULL,
+    `Diameter_m` DECIMAL(5, 2) NOT NULL,
+    `MaxLux` INT NOT NULL,
+    `MedLux` INT NOT NULL,
+    PRIMARY KEY (`ConeLuxDataID`),
 );
