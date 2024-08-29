@@ -183,7 +183,7 @@ CREATE TABLE `OpticalSpecifications` (
     `L80` VARCHAR(10),
     `L90` VARCHAR(10),
     `TM2150000hr` VARCHAR(20),
-    `IESFileTableID` VARCHAR(50),
+    `IESFileID` VARCHAR(50),
     `LightDistributionUpPercent` INT, 
     `LightDistributionDownPercent` INT,  
     `MacAdamStep` INT,  
@@ -397,6 +397,7 @@ CREATE TABLE `Photometry` (
     `IESFile` VARCHAR(255),
     `FileType` VARCHAR(10),
     `IESFileName` VARCHAR(255),
+    `IESClassification` VARCHAR(255),
     `ProductID` INT, 
     PRIMARY KEY (`IESFileID`)
 );
