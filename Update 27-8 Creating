@@ -1,7 +1,7 @@
 USE `testdb`;
 
 CREATE TABLE `Products` (
-    `ProductID` VARCHAR(255),
+    `ProductID` INT AUTO_INCREMENT,
     `ProductCode` VARCHAR(50),
     `ProductName` VARCHAR(255),
     `FamilyID` INT,
@@ -13,26 +13,26 @@ CREATE TABLE `Products` (
 );
 
 CREATE TABLE `Families` (
-    `FamilyID` VARCHAR(255), 
+    `FamilyID` INT AUTO_INCREMENT, 
     `FamilyName` VARCHAR(255),
     `FamilyDescription` TEXT,
     `FamilyShortDescription` TEXT,
-    `ProductID` VARCHAR(255),
+    `ProductID` INT,  
     PRIMARY KEY (`FamilyID`)
 );
 
 CREATE TABLE `SubFamilies` (
-    `SubFamilyID` VARCHAR(255), 
+    `SubFamilyID` INT AUTO_INCREMENT, 
     `SubFamilyName` VARCHAR(50),
     `SubFamilyDescription` TEXT,
     `SubFamilyShortDescription` TEXT,
     `SubFamilyCollection` VARCHAR(255),
-    `ProductID` VARCHAR(255),  
+    `ProductID` INT,  
     PRIMARY KEY (`SubFamilyID`)
 );
 
 CREATE TABLE `Suppliers` (
-    `SupplierID` VARCHAR(255), 
+    `SupplierID` INT AUTO_INCREMENT, 
     `SupplierName` VARCHAR(100),
     `SupplierProductCode` VARCHAR(20),
     `SupplierLogo` VARCHAR(255),
@@ -43,12 +43,12 @@ CREATE TABLE `Suppliers` (
     `ProductGroups` VARCHAR(255),
     `RelatedProducts` VARCHAR(255),
     `HeroImage` VARCHAR(255) NULL,
-    `ProductID` VARCHAR(255),  
+    `ProductID` INT,  
     PRIMARY KEY (`SupplierID`)
 );
 
 CREATE TABLE `PhysicalConstructions` (
-    `PhysicalID` VARCHAR(255) NULL,
+    `PhysicalID` INT AUTO_INCREMENT,
     `HousingMaterial` VARCHAR(100),
     `OpticMaterial` VARCHAR(100),
     `Weight` VARCHAR(10),
@@ -74,28 +74,29 @@ CREATE TABLE `PhysicalConstructions` (
     `NumberOfBlindPlugs` INT, 
     `MaxCableDiameter_mm` INT, 
     `MinCableDiameter_mm` INT,  
-    `ProductID` VARCHAR(255), 
+    `ProductID` INT,  
     PRIMARY KEY (`PhysicalID`)
 );
 
 
 
 CREATE TABLE `ProductGroups` (
-    `ProductGroupID` VARCHAR(255),  
+    `ProductGroupID` INT AUTO_INCREMENT,  
     `ProductCategory` VARCHAR(50),
     `ProductSubCategory` VARCHAR(50),
     `MiscellaneousInfo` VARCHAR(255),
     `Collection` VARCHAR(50),
-    `ProductID` VARCHAR(255),  
+    `ProductID` INT,  
     PRIMARY KEY (`ProductGroupID`)
 );
 
 CREATE TABLE `ElectricalSpecifications` (
-    `ElectricalID` VARCHAR(255),
+    `ElectricalID` INT AUTO_INCREMENT,
     `RatedVoltage` VARCHAR(30),
     `Cycles` VARCHAR(30),
     `LCP` VARCHAR(255),
     `AdvertisedWatts` INT,
+    `ActualWatts` INT,
     `PowerFactor` VARCHAR(10),
     `Current` VARCHAR(10),
     `ConnectionDescription` VARCHAR(255),
@@ -111,13 +112,13 @@ CREATE TABLE `ElectricalSpecifications` (
     `NumLuminaires10AMCBTypeC` INT, 
     `NumLuminaires16AMCBTypeB` INT,  
     `NumLuminaires16AMCBTypeC` INT, 
-    `ProductID` VARCHAR(255),  
+    `ProductID` INT,  
     PRIMARY KEY (`ElectricalID`)
 );
 
 
 CREATE TABLE `OpticalSpecifications` (
-    `OpticalID` VARCHAR(255),
+    `OpticalID` INT AUTO_INCREMENT,
     `OpticalDescription` VARCHAR(100),
     `OpticalCategory` VARCHAR(255),
     `BeamSpread` VARCHAR(10),
@@ -174,8 +175,6 @@ CREATE TABLE `OpticalSpecifications` (
     `L90` VARCHAR(10),
     `TM2150000hr` VARCHAR(20),
     `IESFileTableID` VARCHAR(50),
-    `IESFileLink` VARCHAR(255) NULL,
-    `IESSymbolLink` VARCHAR(255) NULL,
     `LightDistributionUpPercent` INT, 
     `LightDistributionDownPercent` INT,  
     `MacAdamStep` INT,  
@@ -184,13 +183,13 @@ CREATE TABLE `OpticalSpecifications` (
     `L80MedianUsefulLifeLEDTa25Hr` INT, 
     `L70MedianUsefulLifeLEDMaxTaHr` INT,  
     `L80MedianUsefulLifeLEDMaxTaHr` INT, 
-    `ProductID` VARCHAR(255),
+    `ProductID` INT,  
     PRIMARY KEY (`OpticalID`)
 );
 
 
 CREATE TABLE `LEDCharacteristics` (
-    `LEDID` VARCHAR(255),
+    `LEDID` INT AUTO_INCREMENT,
     `PrimaryChipSupplier` VARCHAR(100),
     `SecondaryChipSupplier` VARCHAR(50) NULL,
     `ChipSeries` VARCHAR(50),
@@ -236,12 +235,12 @@ CREATE TABLE `LEDCharacteristics` (
     `InSituTempOfLEDChip` VARCHAR(10),
     `LEDModuleVf` VARCHAR(10),
     `LumenPercentage50000Hrs` VARCHAR(10),
-    `ProductID` VARCHAR(255), 
+    `ProductID` INT,  
     PRIMARY KEY (`LEDID`)
 );
 
 CREATE TABLE `DriverSpecifications` (
-    `DriverID` VARCHAR(255),
+    `DriverID` INT AUTO_INCREMENT,
     `VersaluxDriverCode` VARCHAR(50),
     `DriverDescription` VARCHAR(100),
     `DriverSupplier` VARCHAR(50),
@@ -292,12 +291,12 @@ CREATE TABLE `DriverSpecifications` (
     `SVM` VARCHAR(5),
     `MaxOperatingTemp` VARCHAR(10),
     `NumberOfDrivers` INT, 
-    `ProductID` VARCHAR(255), 
+    `ProductID` INT,  
     PRIMARY KEY (`DriverID`)
 );
 
 CREATE TABLE `CertificateApprovals` (
-    `CertificateID` VARCHAR(255),
+    `CertificateID` INT AUTO_INCREMENT,
     `IPRating` VARCHAR(10),
     `IKRating` VARCHAR(5) NULL,
     `EmergencyRating` BOOLEAN,
@@ -358,13 +357,13 @@ CREATE TABLE `CertificateApprovals` (
     `MaxSurfaceTempDust` INT,
     `EXZone` VARCHAR(255),
     `IECEx` BOOLEAN,
-    `ProductID` VARCHAR(255),  
+    `ProductID` INT,  
     PRIMARY KEY (`CertificateID`)
 );
 
 
 CREATE TABLE `Accessories` (
-    `AccessoryID` VARCHAR(255),
+    `AccessoryID` INT AUTO_INCREMENT,
     `AccessoryCode` VARCHAR(20),
     `AccessoryName` VARCHAR(100),
     `AccessoryDescription` TEXT,
@@ -374,16 +373,15 @@ CREATE TABLE `Accessories` (
     `AccessorySymbol` VARCHAR(255),
     `AccessoryHeroImage` VARCHAR(255),
     `AccessoryDimensionalDiagram` VARCHAR(255),
-    `ProductID` VARCHAR(255),  
+    `ProductID` INT,  
     PRIMARY KEY (`AccessoryID`)
 );
 
 CREATE TABLE `Photometry` (
-    `IESFileID` VARCHAR(255),
+    `IESFileID` INT AUTO_INCREMENT,
     `IESFile` VARCHAR(255),
     `FileType` VARCHAR(10),
     `IESFileName` VARCHAR(255),
-    `IESFileDescription` TEXT,
-    `ProductID` VARCHAR(255), 
+    `ProductID` INT, 
     PRIMARY KEY (`IESFileID`)
 );
